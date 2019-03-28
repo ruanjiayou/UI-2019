@@ -1,0 +1,79 @@
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：mixins混合自身不输出样式
+*/
+
+@import "vi.less";
+/*
+  说明 clearfix进化史中的太多麻烦
+  改用bootstrap中的写法
+  .clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; font-size: 0; visibility: hidden; }
+   IE7不支持:before :after 
+  .clearfix { *zoom: 1; } 
+*/
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/* css3圆角 */
+
+.ie-radius () {
+  position: relative;
+  z-index: 2;
+  *zoom: 1;
+}
+
+//单独设置border-radius
+.border-top-radius(@radius) {
+  border-top-right-radius: @radius;
+  border-top-left-radius: @radius;
+}
+
+.border-right-radius(@radius) {
+  border-bottom-right-radius: @radius;
+  border-top-right-radius: @radius;
+}
+
+.border-bottom-radius(@radius) {
+  border-bottom-right-radius: @radius;
+  border-bottom-left-radius: @radius;
+}
+
+.border-left-radius(@radius) {
+  border-bottom-left-radius: @radius;
+  border-top-left-radius: @radius;
+}
+
+//生成.col-n列
+.col-loop(@n, @i: 1) when (@i < @n) {
+  .col-@{i} {
+    width: (@i*100%/@n);
+  }
+  .col-offset-@{i} {
+    margin-left: (@i*100%/@n);
+  }
+  .col-loop(@n, (@i+1));
+}
+
+//.col-n列间距
+.offset-loop(@offset, @tag) {
+  .offset-@{offset} {
+    margin-left: -@offset/2 + 0px;
+    margin-right: -@offset/2 + 0px;
+  }
+  .offset-@{offset}>div>@{tag} {
+    display: block;
+    margin-left: @offset/2 + 0px;
+    margin-right: @offset/2 + 0px;
+    min-height: 10px;
+  }
+}

@@ -1,0 +1,142 @@
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：分页部分
+    分页信息、分页列表、页码输入、跳转按钮、容量选择
+    2017-7-5 16:33:42 增加pagination-list
+*/
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：mixins混合自身不输出样式
+*/
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：less变量文件
+*/
+/*
+  说明 clearfix进化史中的太多麻烦
+  改用bootstrap中的写法
+  .clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; font-size: 0; visibility: hidden; }
+   IE7不支持:before :after 
+  .clearfix { *zoom: 1; } 
+*/
+/* css3圆角 */
+.pagination {
+  margin: 1rem 0;
+}
+.pagination:before,
+.pagination:after {
+  content: " ";
+  display: table;
+}
+.pagination:after {
+  clear: both;
+}
+.pagination div {
+  line-height: 2;
+  float: left;
+}
+.pagination div span {
+  padding: 0 0.2rem;
+  color: #0F88EB;
+}
+.pagination ul {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+}
+.pagination ul ul {
+  float: left;
+}
+.pagination li {
+  float: left;
+  margin-left: 0.5rem;
+  list-style: none;
+}
+.pagination a {
+  position: relative;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  -webkit-border-radius: 0.3rem;
+  border-radius: 0.3rem;
+  border: 1px solid #0F88EB;
+  color: #0F88EB;
+  cursor: pointer;
+  padding: 0.25rem 1rem;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 2;
+}
+.pagination a:hover {
+  border-color: #0F88EB;
+  background-color: #0F88EB;
+  color: #fff;
+}
+.pagination a.disabled {
+  cursor: not-allowed;
+  color: #ccc;
+  border-color: #f0f0f0;
+  background-color: #f0f0f0;
+}
+.pagination a.active {
+  cursor: default;
+  background-color: #0F88EB;
+  color: #fff;
+}
+.pagination a.txt {
+  cursor: default;
+  color: #ccc;
+  background-color: transparent;
+}
+.pagination select {
+  color: #0F88EB;
+  border: 1px solid #0F88EB;
+  padding: 0.2rem 0.5rem;
+  text-align: center;
+}
+.pagination select:hover {
+  background-color: #0F88EB;
+  color: #fff;
+}
+.pagination ol {
+  float: right;
+}
+.pagination ol li {
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  color: #fff;
+  background: #eee;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.pagination ol li:hover {
+  cursor: pointer;
+}
+.pagination ol li.active {
+  background-color: #0F88EB;
+  cursor: default;
+}
+.pagination input {
+  position: relative;
+  width: 1.8rem;
+  min-width: auto;
+  height: 1.25rem;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  border: 1px solid #0F88EB;
+  padding: 0.3rem;
+  text-align: center;
+  z-index: 2;
+  vertical-align: top;
+  ime-mode: disabled;
+}
+.pagination input:focus {
+  border-color: #0F88EB;
+}

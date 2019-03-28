@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>布局</title>
+  <link rel="stylesheet" href="../../css/ui.core.css" />
+  <link rel="stylesheet" href="../../css/ui.layout.css" />
+  <link rel="stylesheet" href="../../plugins/lightcode/prism.css" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/core.js"></script>
+  <script src="../../js/demo.js"></script>
+  <script src="../../plugins/lightcode/prism.js"></script>
+  <style>
+    .row {
+      margin: 10px 0;
+      background-color: #ccc;
+    }
+
+    .row>div:first-child {
+      background-color: red;
+    }
+
+    #center {
+      padding: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="center">
+    <p id="show">测试 实际开发中按需要选型吧</p>
+    <p>fix布局</p>
+    <div class="card">
+      <div class="ui">
+        <style type="text/test">
+          .g-top-nav { position: absolute; top: 0; left: 0; width: 100%; min-width: 1200px; height: 70px; }
+                    .g-slider-nav { position: fixed; left: 0; top: 70px; bottom: 0; width: 150px; }
+                    .g-main { position: fixed; left: 150px; top: 70px; right: 0; bottom: 0; overflow: auto; }
+                </style>
+        只有结构没有ui
+        <div class="g-top-nav"></div>
+        <div class="g-slider-nav"></div>
+        <div class="g-main"></div>
+      </div>
+    </div>
+    <p>半固定(BFC布局有overflow hidden的限制) 感觉还不如float+margin</p>
+    <div class="card">
+      <div class="ui">
+        <div role="row" class="bfc-layout">
+          <div style="width:200px;float:left;background-color: red;">这里是左侧固定宽度</div>
+          <div style="overflow:hidden;background-color:green;">这里是右侧宽度自适应</div>
+        </div>
+      </div>
+    </div>
+    <p>圣杯布局有position relative限制</p>
+    <div class="card">
+      <div class="ui">
+        <div role="row" class="cup-layout" style="padding: 0 200px;">
+          <div style="float:left;width:100%;background-color:green;">主体内容部分</div>
+          <div
+            style="position: relative; left: -200px;float: left;width:200px;margin-left: -100%;background-color: red;">
+            左侧边栏</div>
+          <div
+            style="position: relative;right: -200px;float: left;width:200px;margin-left: -200px;background-color: red;">
+            右侧边栏</div>
+        </div>
+      </div>
+    </div>
+    <p>双飞翼布局比圣杯布局多了一层div少了2个属性(兼容性比圣杯好)</p>
+    <div class="card">
+      <div class="ui">
+        <div role="row" class="fly-layout">
+          <div style="float: left;width: 100%;">
+            <div style="margin: 0 200px;background-color:green;">这里是主体内容(外边一层div是必要的)</div>
+          </div>
+          <div style="float: left;margin-left: -100%;background-color: red;">左侧边栏</div>
+          <div style="float: left;margin-left: -200px;background-color: red;">右侧边栏</div>
+        </div>
+      </div>
+    </div>
+    <p>栅格布局</p>
+    参考bootstrap(不支持IE8) 可以自己实现
+    <div class="card">
+      <div class="ui">
+        <style>
+          .grid-layout div {
+            border: 1px solid #ccc;
+            background-color: red;
+          }
+        </style>
+        <div role="row" class="grid-layout">
+          <div class="col-3">1</div>
+          <div class="col-6">2</div>
+          <div class="col-3">3</div>
+        </div>
+        <div role="row" class="grid-layout">
+          <div class="col-3 col-offset-1">1</div>
+          <div class="col-3 col-offset-1">2</div>
+          <div class="col-3 col-offset-1">3</div>
+        </div>
+      </div>
+    </div>
+    css3等分多列 只能用在移动端项目中
+    <div class="card">
+      <div class="ui">
+        <style>
+          .columns-box {
+            display: box;
+            display: -webkit-box;
+            display: -moz-box;
+            -webkit-box-orient: horizontal;
+            -moz-box-orient: horizontal;
+            box-orient: horizontal;
+          }
+
+          .columns-box>div {
+            box-flex: 1;
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+            margin: 0 20px;
+          }
+
+          .columns-flex {
+            display: flex;
+          }
+
+          .columns-flex>div {
+            flex: 1;
+          }
+        </style>
+        <span>display: box;</span>
+        <div class="columns-box">
+          <div style="background-color: green;">1</div>
+          <div style="background-color: blue;">2</div>
+          <div style="background-color: pink;">3</div>
+        </div>
+        <span>display: flex</span>
+        <div class="columns-flex">
+          <div style="background-color: green;">1</div>
+          <div style="background-color: blue;">2</div>
+          <div style="background-color: pink;">3</div>
+          <div style="background-color: red;">4</div>
+        </div>
+      </div>
+    </div>
+    css3固定+自适应
+    <div class="card">
+      <div class="ui">
+        <style>
+          .layout {
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -o-flex;
+            display: -ms-flex;
+            display: flex;
+          }
+
+          .layout .fixed {
+            width: 150px;
+          }
+        </style>
+        <div class="layout">
+          <div class="fixed" style="background-color: red;">fixed</div>
+          <div style="background-color: pink;flex: 1;">auto</div>
+          <div class="fixed" style="background-color: red;">fixed</div>
+        </div>
+      </div>
+    </div>
+    <p>多列等间距 需注意负margin造成的横向滚动条</p>
+    <div class="card">
+      <div class="ui">
+        <style>
+          .offset-20>div>div {
+            background-color: #7823a2;
+          }
+        </style>
+        <div role="row" class="offset-20">
+          <div class="col-3">
+            <div>
+              a
+            </div>
+          </div>
+          <div class="col-3">
+            <div>
+              b
+            </div>
+          </div>
+          <div class="col-3">
+            <div>
+              c
+            </div>
+          </div>
+          <div class="col-3">
+            <div>
+              d
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>布局及iframe一屏/iframe实际高度 具体请参考2016 http://127.0.0.1:2016/综合2016</p>
+    <a
+      href="file:///D:/PHPASP/SVN/%E5%89%8D%E7%AB%AFUI%E5%BA%93/%E5%85%AC%E5%8F%B8%E6%9C%8D%E5%8A%A1%E5%99%A8UI/demo-%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%8E%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80/">布局文件夹</a>
+
+    <p>修订日期：2016-6-26 21:50:33 无依赖文件</p>
+    <p>
+      网上搜到一个<br />
+      &lt;iframe id="iFrame1" name="iFrame1" width="100%" onload="this.height=iFrame1.document.body.scrollHeight"
+      frameborder="0" src="index.htm"&gt;&lt;/iframe&gt;<br />
+      看到了吧，关键就在于onload="this.height=iFrame1.document.body.scrollHeight"！
+    </p>
+    <p>
+      我之前写的<br />
+      function initIframe() {
+      var ifm = document.getElementById("main");
+      var subWeb = document.frames ? document.frames["main"].document :ifm.contentDocument;
+      if (ifm != null && subWeb != null) {
+      try{
+      ifm.height = subWeb.body.scrollHeight;
+      }
+      catch(e){
+
+      }
+      //console.log(ifm.height);
+      }
+      }
+      function resizeDialog() {
+      var w = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth;
+      var h = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight;
+      if ($(omask).css("display") == "block") {
+      $(omask).css({ "width": w + "px", "height": h + "px" });
+      $(odialog).css({ "display": "block", "width": w * 0.8 + "px", "height": (h - 80) + "px", "left": w * 0.1 + "px",
+      "top": "40px" });
+      $(odialog).find(".dialog_article:first").css("height", (h - 120) + "px");
+      }
+      }
+      $(window).bind({
+      resize: resizeDialog
+      });
+    </p>
+  </div>
+  <script></script>
+</body>
+
+</html>

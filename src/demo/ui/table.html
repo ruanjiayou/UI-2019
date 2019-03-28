@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>表格</title>
+  <link rel="stylesheet" href="../../css/ui.core.css" />
+  <link rel="stylesheet" href="../../css/ui.button.css" />
+  <link rel="stylesheet" href="../../css/ui.check-radio.css" />
+  <link rel="stylesheet" href="../../css/ui.dropdown.css" />
+  <link rel="stylesheet" href="../../css/ui.table.css" />
+  <link rel="stylesheet" href="../../plugins/lightcode/prism.css" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/core.js"></script>
+  <script src="../../js/core.checkbox.js"></script>
+  <script src="../../js/core.radio.js"></script>
+  <script src="../../js/core.table.js"></script>
+  <script src="../../js/core.dropdown.js"></script>
+  <script src="../../js/demo.js"></script>
+  <script src="../../plugins/lightcode/prism.js"></script>
+  <script src="../../plugins/clipboard/jquery.zeroclipboard.min.js"></script>
+  <script src="../../plugins/clipboard/ZeroClipboard.swf"></script>
+  <style>
+    #center {
+      padding: 2rem;
+    }
+
+    #tableFilter a:hover {
+      cursor: move;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="center">
+    <p></p>
+    <p>1.默认表格(只重置了样式)</p>
+    <div class="card">
+      <div class="ui">
+        <table id="infos" class="table">
+          <tr class="header sort">
+            <th data-column="time">日期<span class="caret desc"></span></th>
+            <th data-column="info">姓名</th>
+            <th>地址</th>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 上海市普陀区金沙江路 1518 上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+        </table>
+        <script>
+          $(function () {
+            //字段排序 含初始化和回调
+            $.table.sort({
+              selector: '#infos .header',
+              param: $.url().mQueryString
+            });
+          });
+        </script>
+      </div>
+    </div>
+    <p>2.斑马纹表格 .even</p>
+    <div class="card">
+      <div class="ui">
+        <table class="table">
+          <tr class="header">
+            <th>日期</th>
+            <th>姓名</th>
+            <th>地址</th>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 上海市普陀区金沙江路 1518 上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr class="even">
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr class="even">
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <p>3.只有水平线.table-line</p>
+    <div class="card">
+      <div class="ui">
+        <table class="table-line">
+          <tr class="header">
+            <th>日期</th>
+            <th>姓名</th>
+            <th>地址</th>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 上海市普陀区金沙江路 1518 上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <p>4.带边框.table-border</p>
+    <div class="card">
+      <div class="ui">
+        <table class="table-border">
+          <tr class="header">
+            <th>日期</th>
+            <th>姓名</th>
+            <th>地址</th>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 上海市普陀区金沙江路 1518 上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+          <tr>
+            <td>2016-9-27</td>
+            <td>某某某</td>
+            <td>上海市普陀区金沙江路 1518 </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <p>6.表格状态：tr给个背景色</p>
+    <p>7.固定表头 默认样式</p>
+    <div class="card">
+      <div class="ui">
+        <div style="width: 800px;">
+          <table class="table-thead">
+            <thead>
+              <tr class="header">
+                <th style="width: 80px;"><input class="check-all" name="cc[]" type="checkbox" text="序号" /></th>
+                <th>内容</th>
+              </tr>
+            </thead>
+          </table>
+          <div class="table-body">
+            <table>
+              <colgroup>
+                <col style="width: 80px;" />
+                <col />
+              </colgroup>
+              <tr>
+                <td><input name="cc[]" type="checkbox" text="1" /></td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td><input name="cc[]" type="checkbox" text="2" /></td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td><input name="cc[]" type="checkbox" text="3" /></td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td><input name="cc[]" type="checkbox" text="4" /></td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td><input name="cc[]" type="checkbox" text="5" /></td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td><input name="cc[]" type="checkbox" text="6" /></td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td><input name="cc[]" type="checkbox" text="7" /></td>
+                <td>我只是用来测试的</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>8.固定表头+.table-line样式</p>
+    <div class="card">
+      <div class="ui">
+        <div style="width: 800px;">
+          <table class="table-thead">
+            <thead>
+              <tr class="header">
+                <th style="width: 80px;">序号</th>
+                <th>内容</th>
+              </tr>
+            </thead>
+          </table>
+          <div class="table-body table-line">
+            <table>
+              <colgroup>
+                <col style="width: 80px;" />
+                <col />
+              </colgroup>
+              <tr>
+                <td>1</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td>我只是用来测试的</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>9.固定表头+边框样式</p>
+    <div class="card">
+      <div class="ui">
+        <div style="width: 800px;">
+          <table class="table-thead table-border">
+            <thead>
+              <tr class="header">
+                <th style="width: 80px;">序号</th>
+                <th>内容</th>
+              </tr>
+            </thead>
+          </table>
+          <div class="table-body table-border">
+            <table>
+              <colgroup>
+                <col style="width: 80px;" />
+                <col />
+              </colgroup>
+              <tr>
+                <td>1</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>我只是用来测试的</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td>我只是用来测试的</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p>带操作按钮</p>
+    <div class="card">
+      <div class="ui">
+        <div style="width: 800px;">
+          <pre id="tpl" class="hide">
+                        <tr>
+                          <td><input name="order[]" type="checkbox" data-id="{{id}}" text="{{id}}"/></td>
+                          <td>{{time}}</td>
+                          <td>{{info}}</td>
+                          <td>{{state}}</td>
+                          <td class="txt-center" data-id="{{id}}">
+                            <label class="btn link edit">修改</label>
+                            <label class="btn link delete">删除</label>
+                          </td>
+                        </tr>
+                    </pre>
+          <div class="txt-right">
+            <div class="dropdown clearfix">
+              <button class="btn" data-toggle="dropdown" type="button" style="margin-bottom:10px;">
+                显示列
+                <span class="caret"></span>
+              </button>
+              <ul id="tableFilter" class="dropdown-menu dropdown-menu-right">
+                <li><a href="javascript:;" ondragstart="return false"><input name="order" autocomplete="off"
+                      checked="checked" disabled="disabled" type="checkbox" text="序号" /></a></li>
+                <li><a href="javascript:;" ondragstart="return false"><input name="time" type="checkbox"
+                      autocomplete="off" checked="checked" text="时间" /></label></a></li>
+                <li><a href="javascript:;" ondragstart="return false"><input name="info" type="checkbox"
+                      autocomplete="off" checked="checked" text="信息" /></label></a></li>
+                <li><a href="javascript:;" ondragstart="return false"><input name="status" type="checkbox"
+                      autocomplete="off" checked="checked" text="状态" /></label></a></li>
+                <li><a href="javascript:;" ondragstart="return false"><input name="operate" disabled="disabled"
+                      type="checkbox" autocomplete="off" checked="checked" text="操作" /></label></a></li>
+              </ul>
+            </div>
+          </div>
+          <table id="info" class="table table-line">
+            <tr class="header txt-left sort">
+              <th data-column="order" style="width: 100px;"><input class="check-all" name="order[]" type="checkbox"
+                  text="序号" /></th>
+              <th data-column="time">时间<span class="caret desc"></span></th>
+              <th data-column="info">信息</th>
+              <th data-column="status">状态</th>
+              <th data-column="operate" class="txt-center" style="width: 150px;">操作</th>
+            </tr>
+            <tr>
+              <td><input name="order[]" type="checkbox" text="789" /></td>
+              <td>2017-07-01</td>
+              <td>信息内容7897979797999999999999999</td>
+              <td>状态N</td>
+              <td class="txt-center" data-id="779">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td><input name="order[]" type="checkbox" text="790" /></td>
+              <td>2017-07-01</td>
+              <td>信息内容7897979797999999999999999</td>
+              <td>状态N</td>
+              <td class="txt-center" data-id="789">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td><input name="order[]" type="checkbox" text="791" /></td>
+              <td>2017-07-01</td>
+              <td>信息内容7897979797999999999999999</td>
+              <td>状态N</td>
+              <td class="txt-center" data-id="799">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td><input name="order[]" type="checkbox" text="792" /></td>
+              <td>2017-07-01</td>
+              <td>信息内容7897979797999999999999999</td>
+              <td>状态N</td>
+              <td class="txt-center" data-id="800">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td><input name="order[]" type="checkbox" text="793" /></td>
+              <td>2017-07-01</td>
+              <td>信息内容7897979797999999999999999</td>
+              <td>状态N</td>
+              <td class="txt-center" data-id="879">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+          </table>
+          <button id="btn" class="btn" style="margin-top:10px;">测试ajax加载数据</button>
+          <script>
+            $(function () {
+              $('#info input[type="checkbox"]').iCheck();
+              //表格排序
+              $.table.sort({
+                selector: '#info .sort',
+                param: $.url().mQueryString
+              });
+              //表格控制列
+              $.table.setColumn({
+                selector: '#info',
+                ctrl: '#tableFilter',
+                tpl: $('#tpl').html()
+              });
+              //ajax演示
+              $('#btn').click(function () {
+                //简单模板引擎测试
+                var data = [
+                  { id: 788, time: '2017-07-01', info: 'xxx', state: 'S1' },
+                  { id: 789, time: '2017-07-02', info: 'yyy', state: 'S2' },
+                  { id: 790, time: '2017-07-03', info: 'zzz', state: 'S3' }
+                ];
+                alert('应该先loading，测试ajax获取显示数据!看控制台');
+                var otable = document.getElementById('info');
+                otable.render(data, function () {
+                  $(this).find("[type='checkbox']").iCheck();
+                  //交替行效果 $(this).find('tr:even').addClass('even');
+                });
+              });
+            });
+          </script>
+        </div>
+      </div>
+      <div class="preview-comment">
+        <p>table表头th的data-column 一一对应ul列表中input的name</p>
+      </div>
+    </div>
+  </div>
+  <script></script>
+</body>
+
+</html>

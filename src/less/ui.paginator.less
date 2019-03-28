@@ -1,0 +1,117 @@
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：分页部分
+    分页信息、分页列表、页码输入、跳转按钮、容量选择
+    2017-7-5 16:33:42 增加pagination-list
+*/
+
+@import "mixins.less";
+.pagination {
+  margin: @body-font-size 0;
+  .clearfix; //分页信息
+  & div {
+    line-height: 2;
+    float: left;
+    & span {
+      padding: 0 0.2rem;
+      color: @color-primary;
+    }
+  } //页码&操作
+  & ul {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+    ul {
+      float: left;
+    }
+  }
+  & li {
+    float: left;
+    margin-left: 0.5*@body-font-size;
+    list-style: none;
+  } //页码与跳转     
+  & a {
+    position: relative;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    border-radius: 0.3rem;
+    border: 1px solid @color-primary;
+    color: @color-primary;
+    cursor: pointer;
+    padding: 0.25rem @body-font-size;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 2;
+    &:hover {
+      border-color: @color-primary;
+      background-color: @color-primary;
+      color: #fff;
+    }
+    &.disabled {
+      cursor: not-allowed;
+      color: @gray-base;
+      border-color: @gray-light;
+      background-color: @component-bg;
+    }
+    &.active {
+      cursor: default;
+      background-color: @color-primary;
+      color: #fff;
+    }
+    &.txt {
+      cursor: default;
+      color: @gray-base;
+      background-color: transparent;
+    }
+  } //选择
+  & select {
+    color: @color-primary;
+    border: 1px solid @color-primary;
+    padding: 0.2rem 0.5*@body-font-size;
+    text-align: center;
+    height: 2rem;
+    font-size: 1rem;
+    &:hover {
+      background-color: @color-primary;
+      color: #fff;
+    }
+  } //特殊 垃圾恶心的 分页选择
+  & ol {
+    float: right;
+    li {
+      width: 2*@body-font-size;
+      height: 2*@body-font-size;
+      line-height: 2*@body-font-size;
+      text-align: center;
+      color: #fff;
+      background: #eee;
+      border-radius: 50%;
+      &:hover {
+        cursor: pointer;
+      }
+      &.active {
+        background-color: @color-primary;
+        cursor: default;
+      }
+    }
+  } //输入
+  & input {
+    position: relative;
+    width: 1.8*@body-font-size;
+    min-width: auto;
+    height: 1.25*@body-font-size;
+    box-sizing: content-box;
+    border-radius: 0;
+    border: 1px solid @color-primary;
+    padding: 0.3rem;
+    text-align: center;
+    z-index: 2;
+    vertical-align: top;
+    ime-mode: disabled;
+    &:focus {
+      border-color: @color-primary;
+    }
+  }
+}

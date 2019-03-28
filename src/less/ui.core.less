@@ -1,0 +1,311 @@
+﻿/*
+时间：2019-02-18 10:56:22
+说明：common.less 样式重置+常用类名 要避免矫枉过正！ 全局变量
+      使用：<link href="/css/common.css" rel="stylesheet/less" />
+      meta标签必须放在title之前 不然IE中iframe里有时js不执行 页面不显示
+    引入less.js 服务器设置less文件的mime类型
+*/
+
+@import "mixins.less";
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+p {
+  margin: 0;
+}
+
+/* IOS阻止微信自动调整主体文字大小： */
+
+body {
+  -webkit-text-size-adjust: 100% !important;
+}
+
+body {
+  background-color: @body-bg;
+  color: @body-text-color;
+  font-size: @body-font-size;
+}
+
+a:link {
+  color: @link-color;
+}
+
+a:visited {
+  color: @link-color;
+}
+
+a:hover {
+  color: @link-hover-color;
+}
+
+a:active {
+  color: @link-active-color;
+}
+
+/* frameborder="0"设置边框是不否为3维（0=否，1=是） 要在标签内写 为了对付IE fieldset的边框要保留 */
+
+iframe {
+  border-width: 0;
+}
+
+/* 发现没有这个会造成滚动条，与固定底部时的发现一样 */
+
+iframe {
+  display: block;
+}
+
+/* 微信中ul有list-style */
+
+ul,
+li {
+  list-style-type: none;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+/* TODO l-v-h-a原则 */
+
+a {
+  text-decoration: none;
+}
+
+template {
+  display: none;
+}
+
+table {
+  border-spacing: 0;
+  /*border-collapse: collapse;*/
+}
+
+textarea {
+  resize: vertical;
+}
+
+a:focus,
+button:focus,
+input:focus {
+  outline: 0 none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #ccc;
+}
+
+input:focus,
+textarea:focus {
+  border-color: @color-primary;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  box-sizing: content-box;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+hr {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+/*textarea/select设置 width:100%; 再设置padding也不影响  input只能设置上下padding 设置左右会造成width 100%实际大于100% 可用text-indent代替*/
+
+/*日历控件*/
+
+.Wdate.txt {
+  width: 45%;
+  height: auto;
+  text-align: center;
+  text-indent: 0;
+}
+
+.Wdate~span {
+  margin: 0 0.33rem;
+}
+
+input.txt {
+  width: 100%;
+  padding: @body-font-size*0.5 0;
+  background: #fff;
+  text-indent: @body-font-size*0.5;
+}
+
+select.ddl {
+  width: 100%;
+  padding: @body-font-size*0.33 0;
+  background: #fff;
+}
+
+textarea.txt-mul {
+  width: 100%;
+  min-height: @body-font-size*6;
+  max-height: @body-font-size*20;
+  padding: @body-font-size*0.33;
+  background: #fff;
+  overflow-y: auto;
+  word-break: break-all;
+}
+
+/* 字体 */
+
+.txt-left {
+  text-align: left;
+}
+
+.txt-right {
+  text-align: right;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-hide {
+  text-indent: -@body-font-size*10000;
+}
+
+.txt-wrap {
+  word-break: break-all;
+}
+
+/* 打断长字符串 */
+
+.txt-omit {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 过长省略 */
+
+.txt-italic {
+  font-style: italic;
+}
+
+/* 斜体 */
+
+.txt-bold {
+  font-weight: bold;
+}
+
+/* 加粗 */
+
+.txt-underline {
+  text-decoration: underline;
+}
+
+/* 下划线 */
+
+.txt-deleteline {
+  text-decoration: line-through;
+}
+
+/* 删除线 */
+
+.txt-overline {
+  text-decoration: overline;
+}
+
+/* img */
+
+img {
+  max-width: 100%;
+  border-width: 0;
+  vertical-align: middle;
+}
+
+.img-responsive {
+  display: block;
+}
+
+.img-round {
+  border-radius: 0.25rem;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+.show {
+  display: block !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+/* 不换行 */
+
+.no-visible {
+  visibility: hidden;
+}
+
+.no-radius {
+  border-radius: 0 !important;
+}
+
+.no-select {
+  user-select: none;
+}
+
+/* 关闭输入法，适合输入验证码 只有IE和Firefox支持 */
+
+.no-ime {
+  ime-mode: disabled;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.clearfix {
+  .clearfix();
+}
+
+/* 兼容公司的~ */
+
+.clear {
+  clear: both;
+}
+
+/* TODO: 渐进增强效果：设置页面文字等在拖动鼠标选中情况下的背景色与文字颜色 */
+
+::selection {
+  color: #fff;
+  background: none repeat scroll 0% 0% #FD5D3C;
+}

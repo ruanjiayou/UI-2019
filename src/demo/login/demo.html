@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>登陆</title>
+  <link rel="stylesheet" href="../../css/ui.core.css" />
+  <link rel="stylesheet" href="../../css/ui.button.css" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/core.js"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      color: #555;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    input {
+      margin-bottom: -1px;
+    }
+
+    input:focus {
+      border-color: #ccc;
+    }
+
+    .content {
+      text-align: center;
+      white-space: nowrap;
+      height: 100%;
+      min-height: 720px;
+    }
+
+    .content:before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+      margin-right: -.25em;
+    }
+
+    .main {
+      width: 300px;
+      margin: 0 auto;
+      padding: 0;
+      min-height: 590px;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: left;
+      white-space: normal;
+    }
+
+    .logo {
+      margin: 0 auto;
+      width: 160px;
+      height: 74px;
+      background: url(logo.png) no-repeat;
+      background-size: contain;
+    }
+
+    .subtitle {
+      margin: 30px 0 20px;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    #login,
+    #register {
+      margin-top: 20px;
+    }
+
+    .two-end {
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 0;
+    }
+
+    #download {
+      margin-top: 50px;
+    }
+
+    /* 标签页(选项卡) */
+    .tabs-header {
+      position: relative;
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      border-bottom: 1px solid #D3DCE6;
+    }
+
+    .tabs-header>div {
+      height: 40px;
+      line-height: 40px;
+      float: left;
+      margin-bottom: -1px;
+      padding: 0 15px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .tabs-header>div.active {
+      color: #20a0ff;
+    }
+
+    .tabs-header>label {
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      display: inline-block;
+      height: 3px;
+      background-color: #20a0ff;
+    }
+
+    .tabs-content>div {
+      float: left;
+      width: 100%;
+      visibility: hidden;
+    }
+
+    .tabs-content>div:first-child {
+      visibility: visible;
+    }
+
+    /* --可选选项卡样式 */
+    .tabs-tabs>.tabs-header>div.active {
+      margin-top: -1px;
+      border-radius: 4px 4px 0 0;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #D3DCE6 #D3DCE6 #FFF;
+    }
+
+    /* --可选卡片样式 */
+    .tabs-cards {
+      display: inline-block;
+      *display: inline;
+      *zoom: 1;
+      border: 1px solid #D3DCE6;
+    }
+
+    .tabs-cards>.tabs-header {
+      background-color: #EFF2F7;
+    }
+
+    .tabs-cards>.tabs-header>div:first-child {
+      margin-left: -1px;
+    }
+
+    .tabs-cards>.tabs-header>div {
+      margin-right: -1px;
+    }
+
+    .tabs-cards>.tabs-header>div.active {
+      background-color: #fff;
+      border-left: 1px solid #D3DCE6;
+      border-right: 1px solid #D3DCE6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <div class="main">
+      <div class="header txt-center">
+        <h1 class="logo txt-hide">知乎</h1>
+        <h2 class="subtitle">与世界分享你的知识、经验和见解</h2>
+      </div>
+      <div id="tabs" class="tabs txt-center clearfix">
+        <div class="tabs-header">
+          <div class="active">登录</div>
+          <div>注册</div>
+          <label></label>
+        </div>
+        <div class="tabs-content">
+          <div>
+            <input class="txt" placeholder="手机号或邮箱"
+              style="border-top-left-radius: 5px; border-top-right-radius: 5px;" />
+            <input class="txt" type="password" placeholder="密码"
+              style="border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;" />
+            <label id="login" class="btn btn-info block">登录</label>
+            <div class="two-end">
+              <a href="#">手机验证码登录</a>
+              <a href="#">无法登录？</a>
+            </div>
+            <a href="#">二维码登陆</a>·<a href="#">社交账号登录</a>
+          </div>
+          <div>
+            <input class="txt" placeholder="姓名" style="border-top-left-radius: 5px; border-top-right-radius: 5px;" />
+            <input class="txt" placeholder="手机号" />
+            <input class="txt" type="password" placeholder="密码"
+              style="border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;" />
+            <label id="register" class="btn btn-info block">注册知乎</label>
+            <div style="margin-top:10px;">
+              击「注册」按钮，即代表你同意<a href="#">《知乎协议》</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <label id="download" class="btn btn-info btn-border block">下载知乎APP</label> -->
+    </div>
+  </div>
+  <script>
+    //获取变量类型 -m
+    $.getType = function (o) {
+      var _t;
+      return ((_t = typeof (o)) == "object" ? o == null && "null" || Object.prototype.toString.call(o).slice(8, -1) : _t).toLowerCase();
+    }
+    $.tabs = function (o, fn) {
+      o = o || null;
+      if (o === null) { console.log("tabs is null!"); return; }
+      if ($.getType(fn) === "function") o.change = fn;
+      if ($.getType(o.inited) === "boolean") return o;
+      else o.inited = true;
+      o = $(o);
+      var headers = o.children("div:first");
+      var contents = o.children(".tabs-content:first").children("div");
+      var bar = headers.children("label");
+      if (bar.length !== 0) bar.css("width", headers.children("div:first")[0].offsetWidth);//初始化bar的尺寸
+      var i = 0;
+      //初始化headers和contents
+      headers.children("div").each(function () { this.index = i++; });
+      contents.css({ "display": "none" });
+      if (contents.length != 0) contents[0].style["display"] = "block";
+
+      headers.children("div").click(function () {
+        var i = 0, argContent = null;
+        if (new RegExp(/\b(active)\b/).test(this.className)) return;
+        headers.children("div").removeClass("active").each(function () { this.index = i++; });
+        $(this).addClass("active");
+        contents.css({ "visibility": "hidden", "display": "none" });
+        if (this.index < contents.length) {
+          argContent = contents[this.index];
+          argContent.style["visibility"] = "visible";
+          argContent.style["display"] = "block";
+        }
+        if (bar) bar.animate({ "left": this.offsetLeft, "width": this.offsetWidth });
+        if ($.getType(o[0].change) === "function") o[0].change(this, argContent);
+      });
+    }
+
+    $.tabs(document.getElementById("tabs"), function (title, content) { });
+  </script>
+</body>
+
+</html>

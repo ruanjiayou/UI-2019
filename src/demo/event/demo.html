@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>事件</title>
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/core.js"></script>
+  <style>
+    #center {
+      padding: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="center">
+    <p id="show">测试</p>
+    <div id="c" style="display:none"><span>test</span></div>
+    <button id="btn">按钮</button>
+    <script>
+      var odiv = document.getElementById("c");
+      document.getElementById("btn").onclick = function (e) {
+        e = e ? e : window.event;
+        console.log(odiv.style.display);
+        if (odiv.style.display == "block") return;
+        odiv.style.display = "block";
+        document.onclick = function () {
+          console.log("document clicked");
+          odiv.style.display = "none";
+          document.onclick = null;
+        }
+        if (e.stopPropagation) e.stopPropagation();
+        else e.cancelBubble = true;
+      }
+      odiv.onclick = function (e) {
+        e.stopPropagation();
+      }
+    </script>
+    <xmp>
+      <div id="divOne" onclick="alert('我是最外层');">
+        <div id="divTwo" onclick="alert('我是中间层！')">
+          　　<a id="hr_three" href="http://www.baidu.com" mce_href="http://www.baidu.com"
+            onclick="alert('我是最里层！')">点击我</a>
+        </div>
+      </div>
+
+    </xmp>
+    1.事件兼容
+    e ? e:window.event;
+    <div><a id="btn1" href="javascript:;">浏览器都弹框了？</a></div>
+    2.停止冒泡
+    window.event.cancelBubble = true : e.stopPropagation();
+    <div id="op"><a id="btn2" href="javascript:;">冒泡了？</a></div><button id="obtn">阻止冒泡</button>
+    3.阻止默认行为
+    window.event? window.event.returnValue = false : e.preventDefault();
+    <div><a id="btn3" href="http://www.baidu.com">去百度了？</a></div>
+  </div>
+  <script>
+    Event.addEvent(document.getElementById("btn1"), "click", function (e) { alert("兼容浏览器:" + this.innerHTML); });
+    Event.addEvent(document.getElementById("op"), "click", function (e) { alert("冒泡了"); });
+    var bStopPropagation = false;
+    Event.addEvent(document.getElementById("obtn"), "click", function (e) {
+      if (bStopPropagation) {
+        bStopPropagation = false;
+        this.innerHTML = "阻止冒泡";
+      }
+      else {
+        bStopPropagation = true;
+        this.innerHTML = "允许冒泡";
+      }
+    });
+    Event.addEvent(document.getElementById("btn2"), "click", function (e) {
+      if (bStopPropagation) {
+        Event.stopBubble(e)
+      }
+      alert("阻止冒泡了？");
+    });
+    Event.addEvent(document.getElementById("btn3"), "click", function (e) { alert("阻止默认行为"); Event.cancelDefault(e); });
+  </script>
+</body>
+
+</html>

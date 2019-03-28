@@ -1,0 +1,289 @@
+/**
+时间：2019-02-18 10:56:22
+说明：
+    button.css的less形式
+    .btn 状态类型/样式类型/尺寸类型
+    2017-3-26 14:42:12 完成
+    2017-5-17 15:23:04 增加group bar样式
+    2017-5-24 09:30:09 IE8 圆角与背景色不可兼得
+**/
+
+@import "mixins.less";
+//按钮组部分
+.btn-group,
+.btn-group-vertical {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  &>.btn {
+    position: relative;
+    float: left;
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 2;
+    }
+  }
+}
+
+.btn-group {
+  .btn+.btn,
+  .btn+.btn-group,
+  .btn-group+.btn,
+  .btn-group+.btn-group {
+    margin-left: -1px;
+  }
+}
+
+//这种写法其实是有问题的
+.btn-toolbar {
+  margin-left: -0.33rem;
+  .clearfix();
+  .btn,
+  .btn-group,
+  .input-group {
+    float: left;
+  }
+  &>.btn,
+  &>.btn-group,
+  &>.input-group {
+    margin-left: 0.33rem;
+  }
+}
+
+//按钮组圆角处理
+.btn-group {
+  &>.btn {
+    border-radius: 0;
+    &:first-child {
+      .border-left-radius(@btn-radius);
+    }
+    &:last-child {
+      .border-right-radius(@btn-radius);
+    } //针对IE9以下
+    &.last-child {
+      .border-right-radius(@btn-radius);
+    }
+  }
+  &>.btn-group {
+    float: left;
+    &>.btn {
+      border-radius: 0;
+    }
+    &>.last-child {
+      .border-right-radius(0.33rem);
+    }
+  }
+}
+
+//TODO toggle
+//按钮样式部分
+a.btn {
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-block;
+  *display: inline; //IE7不支持 inline-block
+  border: 1px solid @component-border-color;
+  border-radius: @btn-radius;
+  background-color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  font-size: 1rem;
+  padding: 0.4rem @btn-padding-horizontal;
+  text-align: center;
+  white-space: nowrap;
+  .ie-radius();
+  &:focus,
+  &.active,
+  &:hover {
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    background-color: @gray-light;
+  }
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    color: @btn-disabled-color;
+    background-color: @btn-disabled-bg;
+  }
+  &.block {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  /*样式类型：link border disabled*/
+  &.link {
+    padding: 0;
+    border-width: 0;
+    background-color: transparent;
+    background-position: left center;
+    background-repeat: no-repeat;
+    color: @body-text-color; //text-decoration: underline;
+    behavior: initial;
+    &+.link {
+      margin-left: @body-font-size*0.5;
+    }
+  }
+  /* 边框样式：*/
+  &.border {
+    &.disabled,
+    &:hover,
+    &:focus {
+      background-color: @btn-disabled-bg;
+    }
+  }
+  /*状态类型：红、黄、蓝、绿*/
+  &.btn-success {
+    background-color: @color-success;
+    border-color: @color-success;
+    color: #fff;
+    &:focus,
+    &:hover,
+    &.active {
+      background-color: @color-success;
+      border-color: @color-success;
+      color: #fff;
+    }
+  }
+  &.btn-warning {
+    background-color: @color-warning;
+    border-color: @color-warning;
+    color: #fff;
+    &:focus,
+    &:hover,
+    &.active {
+      background-color: @color-warning;
+      border-color: @color-warning;
+      color: #fff;
+    }
+  }
+  &.btn-danger {
+    background-color: @color-error;
+    border-color: @color-error;
+    color: #fff;
+    &:focus,
+    &:hover,
+    &.active {
+      background-color: @color-error;
+      border-color: @color-error;
+      color: #fff;
+    }
+  }
+  &.btn-info {
+    background-color: @color-info;
+    border-color: @color-info;
+    color: #fff;
+    &:focus,
+    &:hover,
+    &.active {
+      background-color: @color-info;
+      border-color: @color-info;
+      color: #fff;
+    }
+  } //有边框 有颜色
+  &.border {
+    background-color: #fff;
+    &.btn-success {
+      color: @color-success;
+      &:hover,
+      &:focus {
+        color: #fff;
+      }
+    }
+    &.btn-warning {
+      color: @color-warning;
+      &:hover,
+      &:focus {
+        color: #fff;
+      }
+    }
+    &.btn-danger {
+      color: @color-error;
+      &:hover,
+      &:focus {
+        color: #fff;
+      }
+    }
+    &.btn-info {
+      color: @color-info;
+      &:hover,
+      &:focus {
+        color: #fff;
+      }
+    }
+  }
+}
+
+/* 尺寸类型：按钮常用3种尺寸 */
+
+.btn-sm {
+  height: auto;
+  padding: @body-font-size*0.33 @body-font-size*0.66;
+}
+
+.btn-md {
+  height: auto;
+  padding: @body-font-size*0.66 @body-font-size*1.5;
+  font-size: @body-font-size*1.33;
+}
+
+.btn-lg {
+  height: auto;
+  padding: @body-font-size*0.825 @body-font-size*2;
+  font-size: @body-font-size*1.66;
+}
+
+/* 表单常用的按钮 */
+
+.add,
+.back,
+.query,
+.reset,
+.save,
+.cancel {
+  display: inline-block;
+  font-size: 1rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.add,
+.query,
+.back,
+.save {
+  border-width: 0;
+  background-color: @color-primary;
+  color: #fff;
+  &:hover,
+  &:active {
+    background-color: @color-primary;
+  }
+}
+
+.reset,
+.cancel {
+  background-color: @gray-base;
+  color: @btn-disabled-color;
+  border-width: 0;
+  &:hover {
+    background-color: @gray-base;
+  }
+}
+
+.btn.btn-add-cross {
+  border-width: 0;
+  background: #fff url(../images/icon-add.png) center center no-repeat;
+}
+
+.btn.link.delete {
+  background-image: url(../images/btn-delete.png);
+  text-indent: @body-font-size*1.2;
+}
+
+.btn.link.edit {
+  background-image: url(../images/btn-edit.png);
+  text-indent: @body-font-size*1.2;
+}

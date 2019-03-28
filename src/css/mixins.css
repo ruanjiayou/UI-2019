@@ -1,0 +1,18 @@
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：mixins混合自身不输出样式
+*/
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：less变量文件
+*/
+/*
+  说明 clearfix进化史中的太多麻烦
+  改用bootstrap中的写法
+  .clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; font-size: 0; visibility: hidden; }
+   IE7不支持:before :after 
+  .clearfix { *zoom: 1; } 
+*/
+/* css3圆角 */

@@ -1,0 +1,125 @@
+/**
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：
+
+**/
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：mixins混合自身不输出样式
+*/
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：less变量文件
+*/
+/*
+  说明 clearfix进化史中的太多麻烦
+  改用bootstrap中的写法
+  .clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; font-size: 0; visibility: hidden; }
+   IE7不支持:before :after 
+  .clearfix { *zoom: 1; } 
+*/
+/* css3圆角 */
+.sr-only {
+  line-height: 1.4;
+}
+.dropup,
+.dropdown {
+  position: relative;
+}
+.dropup .caret,
+.dropdown .caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 0.3333rem solid;
+  border-right: 0.3333rem solid transparent;
+  border-left: 0.3333rem solid transparent;
+}
+.dropdown-toggle:focus {
+  outline: 0;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 5;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.3rem 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 1rem;
+  text-align: left;
+  background-color: #fff;
+  border: 1px solid #f0f0f0;
+  -webkit-border-radius: 0.3333rem;
+  border-radius: 0.3333rem;
+  -webkit-box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.175);
+  box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.175);
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.dropdown-menu.pull-right {
+  right: 0;
+  left: auto;
+}
+.dropdown-menu .divider {
+  height: 1px;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  background-color: #ccc;
+}
+.dropdown-menu > li > a {
+  display: block;
+  padding: 0.2rem 1.25rem;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.8;
+  white-space: nowrap;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #0F88EB;
+  text-decoration: none;
+  outline: 0;
+  background-color: #f0f0f0;
+}
+.dropdown-menu > .disabled > a,
+.dropdown-menu > .disabled > a:hover,
+.dropdown-menu > .disabled > a:focus {
+  color: #f0f0f0;
+  text-decoration: none;
+  cursor: not-allowed;
+  background-color: transparent;
+  background-image: none;
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.open > .dropdown-menu {
+  display: block;
+}
+.dropdown-menu-left {
+  left: 0;
+  right: auto;
+}
+.dropdown-menu-right,
+.pull-right > .dropdown-menu {
+  left: auto;
+  right: 0;
+}
+.dropup .caret {
+  border-top: 0;
+  border-bottom: 0.3333rem dashed;
+  border-bottom: 0.3333rem solid \9;
+  content: " ";
+}
+.dropup .dropdown-menu {
+  top: auto;
+  bottom: 100%;
+  margin-bottom: 2px;
+}

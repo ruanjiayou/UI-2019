@@ -1,0 +1,131 @@
+/**
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：
+
+**/
+
+@import "mixins.less";
+//处理分裂式高度塌陷
+.sr-only {
+  line-height: 1.4;
+}
+
+//下拉菜单的wraper(div)
+.dropup,
+.dropdown {
+  position: relative; //下拉菜单 箭头或三角(arrow/caret)
+  & .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: @body-font-size*0.3333 solid;
+    border-right: @body-font-size*0.3333 solid transparent;
+    border-left: @body-font-size*0.3333 solid transparent;
+  }
+}
+
+//关闭时 阻止toggle时的focus
+.dropdown-toggle:focus {
+  outline: 0;
+}
+
+//下拉菜单的菜单(ul)
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 5;
+  display: none; // none by default, but block on "open" of the menu
+  float: left;
+  min-width: 10rem;
+  padding: 0.3rem 0;
+  margin: 2px 0 0; // override default ul
+  list-style: none;
+  font-size: @body-font-size;
+  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+  background-color: #fff;
+  border: 1px solid @gray-light; // IE8 fallback
+  border: 1px solid @gray-light;
+  border-radius: @body-font-size*0.3333;
+  box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.175);
+  background-clip: padding-box; //菜单右对齐
+  &.pull-right {
+    right: 0;
+    left: auto;
+  } //下拉菜单中的分割器(hr)
+  .divider {
+    height: 1px;
+    margin: @body-font-size*0.5 0;
+    overflow: hidden;
+    background-color: @component-border-color;
+  }
+  &>li>a {
+    display: block;
+    padding: 0.2rem 1.25rem;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.8;
+    white-space: nowrap; //强制不换行
+  }
+}
+
+//hover focus状态
+.dropdown-menu>li>a {
+  &:hover,
+  &:focus {
+    color: @color-primary;
+    text-decoration: none;
+    outline: 0;
+    background-color: @component-bg;
+  }
+}
+
+//disabled状态
+.dropdown-menu>.disabled>a {
+  &,
+  &:hover,
+  &:focus {
+    color: @component-bg;
+    text-decoration: none;
+    cursor: not-allowed;
+    background-color: transparent;
+    background-image: none;
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  } // 核心hover/focus效果
+}
+
+//open状态下 显示下拉菜单
+.open {
+  &>.dropdown-menu {
+    display: block;
+  }
+}
+
+.dropdown-menu-left {
+  left: 0;
+  right: auto;
+}
+
+.dropdown-menu-right,
+.pull-right>.dropdown-menu {
+  left: auto;
+  right: 0;
+}
+
+//
+.dropup {
+  .caret {
+    border-top: 0;
+    border-bottom: @body-font-size*0.3333 dashed;
+    border-bottom: @body-font-size*0.3333 solid ~"\9";
+    content: " ";
+  }
+  .dropdown-menu {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 2px;
+  }
+}

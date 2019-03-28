@@ -1,0 +1,40 @@
+/*
+Utility mixins 混合类工具
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：min-width不能放在.container上 放body上较好 加上overflow-x: hidden;解决负margin的问题
+
+*/
+
+@import "mixins.less";
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* @media width(max=800px) {} */
+
+/*BFC布局*/
+
+/*圣杯布局*/
+
+/*双飞翼布局*/
+
+/*fixed 上左右下布局*/
+
+/*栅格布局*/
+
+[role="row"] {
+  position: relative;
+  .clearfix();
+}
+
+[class|="col"] {
+  position: relative;
+  min-height: 1px;
+  float: left;
+  box-sizing: border-box;
+}
+
+.col-loop(@grid-columns);
+.offset-loop(@grid-offset, div);

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>按钮</title>
+  <link rel="stylesheet" href="../../css/ui.core.css" />
+  <link rel="stylesheet" href="../../css/ui.button.css" />
+  <link rel="stylesheet" href="../../plugins/lightcode/prism.css" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/core.js"></script>
+  <script src="../../js/demo.js"></script>
+  <script src="../../plugins/lightcode/prism.js"></script>
+  <style>
+    #center {
+      padding: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="center">
+    <p>默认按钮</p>
+    <div class="card">
+      <div class="ui">
+        <button class="btn">按钮button</button>
+        <label class="btn">按钮label</label>
+        <a class="btn" href="javascript:;">按钮a</a>
+      </div>
+      <div class="preview-comment">
+        <p><span class="important">引入common.css common.button.css!</span></p>
+      </div>
+    </div>
+    <p>四种尺寸按钮</p>
+    <div class="card">
+      <div class="ui">
+        <label class="btn">按钮label</label>
+        <label class="btn btn-sm">按钮label</label>
+        <label class="btn btn-md">按钮label</label>
+        <label class="btn btn-lg">按钮label</label>
+      </div>
+    </div>
+    <p>带边框按钮</p>
+    <div class="card">
+      <div class="ui">
+        <button class="btn border">按钮button</button>
+        <label class="btn border">按钮label</label>
+        <a class="btn border" href="javascript:;">按钮a</a>
+      </div>
+      <div class="preview-comment">
+        <p>跟默认的一样~~ 历史架构问题</p>
+      </div>
+    </div>
+    <p>disable按钮</p>
+    <div class="card">
+      <div class="ui">
+        <button class="btn disabled">按钮button</button>
+        <label class="btn disabled">按钮label</label>
+        <a class="btn disabled" href="javascript:;">按钮a</a>
+      </div>
+    </div>
+    <p>有边框disable</p>
+    <div class="card">
+      <div class="ui">
+        <button class="btn border disabled">按钮button</button>
+        <label class="btn border disabled">按钮label</label>
+        <a class="btn border disabled" href="javascript:;">按钮a</a>
+      </div>
+    </div>
+    <p>一整行block</p>
+    <div class="card">
+      <div class="ui">
+        <button class="btn block">按钮button</button>
+        <br />
+        <br />
+        <label class="btn block">按钮label</label>
+        <br />
+        <br />
+        <a class="btn block" href="javascript:;">按钮a</a>
+      </div>
+    </div>
+    <p>带背景色按钮</p>
+    <div class="card">
+      <div class="ui">
+        <button class="btn btn-success">按钮button</button>
+        <button class="btn btn-warning">按钮button</button>
+        <button class="btn btn-danger">按钮button</button>
+        <button class="btn btn-info">按钮button</button>
+        <br />
+        <br />
+        <label class="btn btn-success">按钮label</label>
+        <label class="btn btn-warning">按钮label</label>
+        <label class="btn btn-danger">按钮label</label>
+        <label class="btn btn-info">按钮label</label>
+        <br />
+        <br />
+        <a class="btn btn-success" href="javascript:;">按钮a</a>
+        <a class="btn btn-warning" href="javascript:;">按钮a</a>
+        <a class="btn btn-danger" href="javascript:;">按钮a</a>
+        <a class="btn btn-info" href="javascript:;">按钮a</a>
+      </div>
+    </div>
+    <p>带边框带颜色白背景按钮</p>
+    <div class="card">
+      <div class="ui">
+        <button class="btn border btn-success">按钮button</button>
+        <button class="btn border btn-warning">按钮button</button>
+        <button class="btn border btn-danger">按钮button</button>
+        <button class="btn border btn-info">按钮button</button>
+        <br />
+        <br />
+        <label class="btn border btn-success">按钮label</label>
+        <label class="btn border btn-warning">按钮label</label>
+        <label class="btn border btn-danger">按钮label</label>
+        <label class="btn border btn-info">按钮label</label>
+        <br />
+        <br />
+        <a class="btn border btn-success" href="javascript:;">按钮a</a>
+        <a class="btn border btn-warning" href="javascript:;">按钮a</a>
+        <a class="btn border btn-danger" href="javascript:;">按钮a</a>
+        <a class="btn border btn-info" href="javascript:;">按钮a</a>
+      </div>
+    </div>
+    <p>× 带前缀后缀图标按钮 PC2017中废弃icon图标</p>
+    <p>自定义</p>
+    <div class="card">
+      <div class="ui">
+        add back query save
+        <button class="btn add">按钮</button>
+        reset cancel
+        <button class="btn reset">按钮</button>
+        <button class="btn btn-add-cross">&nbsp;</button>
+      </div>
+    </div>
+    <p>链接样式按钮</p>
+    <div class="card">
+      <div class="ui">
+        <label class="btn link edit">修改</label>
+        <label class="btn link delete">删除</label>
+      </div>
+    </div>
+    <p>状态变化,支持ajax： edit→save→loading→edit(save1 save2)</p>
+    <div class="card">
+      <div class="ui">
+        <label id="btn" class="btn">按钮label</label>
+        <br />
+        <label id="test1" class="btn">3秒后log 1</label>
+        <label id="test2" class="btn">3秒后log 2</label>
+        <label class="btn hide">3秒后log 2</label>
+        <script>
+          $(function () {
+            var btn = document.getElementById("btn");
+            function test(t) {
+              btn.innerHTML = t.innerHTML;
+            }
+            document.getElementById("test1").onclick = function () {
+              var self = this;
+              btn.innerHTML = "btn1 clicked, after 3s, log btn1";
+              clearTimeout(btn.timer);
+              btn.timer = null;
+              btn.timer = setTimeout(function () { test.call(btn, self); }, 3000);
+            }
+            document.getElementById("test2").onclick = function () {
+              var self = this;
+              btn.innerHTML = "btn2 clicked, after 3s, log btn2";
+              clearTimeout(btn.timer);
+              btn.timer = null;
+              btn.timer = setTimeout(function () { test.call(btn, self); }, 3000);
+            }
+          });
+        </script>
+      </div>
+    </div>
+    <p>group测试</p>
+    <div class="card">
+      <div class="ui">
+        <div class="btn-group">
+          <label class="btn">left</label>
+          <label class="btn">middle</label>
+          <label class="btn">right</label>
+        </div>
+      </div>
+    </div>
+    <p>btn-toolbar</p>
+    <div class="card">
+      <div class="ui">
+        <div class="btn-toolbar">
+          <div class="btn-group">
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+          </div>
+          <div class="btn-group">
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+          </div>
+          <div class="btn-group">
+            <button class="btn">6</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script></script>
+</body>
+
+</html>

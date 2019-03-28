@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>播放器</title>
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../plugins/jwplayer/jwplayer.js"></script>
+  <script src="../../plugins/jwplayer/jwplayer.html5.js"></script>
+  <style>
+    #center {
+      padding: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="center">
+    <p id="show">测试：mp4 flv mov 3gp 等格式兼容良好其他的不行</p>
+    <div id="test">
+      <div id="video"></div>
+    </div>
+  </div>
+  <script>
+    jwplayer("video").setup({//通过js调用播放器并安装到指定容器（container）内
+      flashplayer: "jwplayer/jwplayer.flash.swf",//调用播放器
+      file: "test.mp4",//调用视频文件
+      width: 450,//播放器宽
+      height: 350,//播放器高
+      controlbar: "over",//控制条位置
+      screencolor: "#fff",//播放器颜色
+      repeat: true,//重复播放
+      autostart: true//自动播放
+    });
+  </script>
+</body>
+
+</html>

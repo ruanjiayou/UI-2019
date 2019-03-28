@@ -1,0 +1,83 @@
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：less变量文件
+*/
+//assist color
+//边框灰度
+@gray-base: #ccc;
+
+//文字灰度
+@gray-dark: #333;
+
+//背景灰度
+@gray-light: #f0f0f0;
+
+//项目全局主色调
+@color-primary: #0F88EB;
+@color-success: #5cb85c;
+@color-info: @color-primary;
+@color-warning: #f0ad4e;
+@color-error: #d9534f;
+
+//脚手架scaffolding
+@body-bg: #fff;
+@body-text-color: @gray-dark;
+@body-font-size: 1rem;
+@link-color: @body-text-color;
+@link-hover-color: lighten(@link-color, 15%);
+@link-active-color: red;
+
+//排版Typography
+
+//icon图标
+
+//组件components
+@component-padding-vertical: 0.4rem;
+@component-padding-horizontal: 0.8rem;
+@component-border-radius: 0.25rem;
+@component-border-color: @gray-base;
+@component-bg: @gray-light;
+
+//下拉框三角
+@component-caret-width: 0.25rem;
+
+//按钮buttons
+@btn-disabled-color: @gray-dark;
+@btn-disabled-border-color: @component-border-color;
+@btn-disabled-bg: @component-bg;
+@btn-padding-vertical: @component-padding-vertical;
+@btn-padding-horizontal: @component-padding-horizontal;
+@btn-radius: @component-border-radius;
+
+//表格tables
+@table-border-color: @component-border-color;
+@table-top-bg: @component-bg;
+@table-top-color: @gray-base;
+@table-odd-bg: #fff;
+@table-even-bg: #f8f8f8;
+@table-padding-horizontal: @component-padding-horizontal;
+@table-padding-vertical: @component-padding-vertical;
+
+//管理系统页面
+@page-query-bg: @component-bg;
+@page-info-bg: lighten(@gray-light,5%);
+@page-info-border: @component-border-color;
+@page-info-title-bg: @component-bg;
+@page-list-top-bg: @component-bg;
+@page-list-top-color: @component-bg;
+@page-list-odd-bg: @component-bg;
+@page-list-even-bg: @component-bg;
+@page-list-padding-horizontal: @component-bg;
+@page-list-padding-vertical: @component-bg;
+
+//下拉框dropdown
+@dropdown-bg: #fff;
+@dropdown-active-bg: #fff;
+
+//布局 包含栅格系统
+@grid-columns: 12;
+@grid-offset: 20;
+
+//notify loading与toast颜色固定
+@notify-bg: #666;

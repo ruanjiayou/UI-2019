@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2015-9-27 10:41:48" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>表单验证</title>
+  <link rel="stylesheet" href="form/reset.css" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="form/form.js"></script>
+  <style>
+    .validate-tip {
+      float: left;
+    }
+
+    .title {
+      height: 85px;
+      line-height: 85px;
+      margin: 0 30px;
+      border-bottom: 2px solid #e2a318;
+      font-size: 22px;
+      text-align: center;
+    }
+
+    .bottom {
+      margin: 50px 30px 0;
+      border-top: 2px solid #d2d2d2;
+      padding: 35px 0 110px;
+      text-align: center;
+    }
+
+    textarea {
+      border-color: #ccc;
+      border-radius: 4px;
+      padding: 8px;
+    }
+
+    #uploadfile {
+      width: 0;
+      height: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .w50 { width: 50px; }
+.w84 { width: 84px; }
+.w90 { width: 90px; }
+.w108 { width: 108px; }
+.w120 { width: 120px; }
+.w150 { width: 150px; }
+.w170 { width: 180px; }
+.w180 { width: 170px; }
+.w192 { width: 192px; }
+.w200 { width: 200px; }
+.w206 { width: 206px; }
+.w218 { width: 218px; }
+.w246 { width: 246px; }
+.w264 { width: 264px; }
+.w280 { width: 280px; }
+.w290 { width: 290px; }
+.w350 { width: 350px; }
+.w420 { width: 420px; }
+.w500 { width: 500px; }
+.w520 { width: 520px; }
+.w580 { width: 580px; }
+.w760 { width: 760px; }
+.w900 { width: 900px; }
+.w1100 { width: 1100px; }
+
+.Hfull { height: 100%; }
+
+.H50 { height: 50px; }
+.H60 { height: 60px; }
+.H70 { height: 70px; }
+.H100 { height: 100px; }
+.H135 { height: 135px; }
+.H185 { height: 185px; }
+.H200 { height: 200px; }
+.H300 { height: 300px; }
+.H330 { height: 330px; }
+.H400 { height: 400px; }
+.H-center40 { line-height: 40px; }
+.HL22 { height: 22px; line-height: 22px; }
+.HL25 { height: 25px; line-height: 25px; }
+.HL30 { height: 30px; line-height: 30px; }
+.HL36 { height: 36px; line-height: 36px; }
+.HL40 { height: 40px; line-height: 40px; }
+.HL45 { height: 45px; line-height: 45px; }
+.HL50 { height: 50px; line-height: 50px; }
+.HL60 { height: 60px; line-height: 60px; }
+.HL75 { height: 75px; line-height: 75px; }
+
+.mar-L6 { margin-left: 6px; }
+.mar-L10 { margin-left: 10px; }
+.mar-L20 { margin-left: 20px; }
+.mar-L30 { margin-left: 30px; }
+.mar-L35 { margin-left: 35px; }
+
+.mar-T5 { margin-top: 5px; }
+.mar-T7 { margin-top: 7px; }
+.mar-T10 { margin-top: 10px; }
+.mar-T15 { margin-top: 15px; }
+.mar-T20 { margin-top: 20px; }
+.mar-T30 { margin-top: 30px; }
+.mar-T35 { margin-top: 35px; }
+.mar-T40 { margin-top: 40px; }
+.mar-T50 { margin-top: 50px; }
+.mar-T100 { margin-top: 100px; }
+
+.mar-B15 { margin-bottom: 15px; }
+.mar-B30 { margin-bottom: 30px; }
+.mar-B50 { margin-bottom: 50px; }
+
+.mar-R10 { margin-right: 10px; }
+.mar-R20 { margin-right: 20px; }
+.mar-R55 { margin-right: 55px; }
+
+.mar-LR100 { margin: 0 100px; }
+
+.pad-L10 { padding-left: 10px; }
+.pad-L20 { padding-left: 20px; }
+.pad-L40 { padding-left: 40px; }
+.pad-LR5 { padding-left: 5px; padding-right: 5px; }
+.pad-LR10 { padding-left: 10px; padding-right: 10px; }
+.pad-LR30 { padding-left: 30px; padding-right: 30px; }
+.pad-LR45 { padding: 0 45px; }
+.pad-LR80 { padding: 0 80px; }
+.pad-T30 { padding-top: 30px; }
+.pad-B30 { padding-bottom: 30px; }
+.pad-R12 { padding-right: 12px;}
+.pad-R32 { padding-right: 32px;}
+
+.font-13 { font-size: 13px; }
+.font-16 { font-size: 16px; }
+.font-18 { font-size: 18px; }
+.font-20 { font-size: 20px; }
+.font-22 { font-size: 22px; }
+.font-24 { font-size: 24px; }
+.font-28 { font-size: 28px; }
+.font-36 { font-size: 36px; }
+
+.BGC-thead { background-color: #EFF2F7; }
+.BGC-white { background-color: #fff; }
+.BGC-gray { background-color: #f8f8f8; }
+.BGC-c { background-color: #ccc; }
+.BGC-b { background-color: #bbb; }
+.BGC-e { background-color: #e4e4e4; }
+.BGC-3 { background-color: #333; }
+.BGC-deepgreen { background-color: #01806f; }
+.BGC-lightgreen { background-color: #4bc8b6; }
+.BGC-blue { background-color: #55c5ea; }
+.BGC-yellow { background-color: #ffb60f; }
+.BGC-orange { background-color: #eb7126; }
+
+.btn-BGC-green { background-color: #65bbb0; color: #fff; }
+.btn-green { background-color: #016934; color: #fff !important; }
+.c-white { color: #fff !important; }
+.c-gray3 { color: #333; }
+.c-gray8 { color: #888; }
+.c-gray6a { color: #6a6a6a; }
+.c-grayc { color: #ccc; }
+.c-orange { color: #f2813d; }
+.c-red { color: #f00; }
+.border-gray { border: 1px solid #dadada; }
+
+.no-radius { border-radius: 0; }
+.no-border { border-width: 0; }
+.pad-LR0 { padding-left: 0; padding-right: 0; }
+.mar-center { margin-left: auto; margin-right: auto; }
+.ie-css3 { behavior: url(/css/ie-css3.htc); }
+.no-wrap { white-space: nowrap; }
+.btn-txt { display: block; border-radius: 0; color: #fff !important; cursor: pointer; text-align: center; text-decoration: none; }
+.btn-txt:hover { color: #fff; }
+.btn-add { background-image: url(images/btn-add.png); background-position: 10px center; background-repeat: no-repeat; }
+.btn-edit { background-image: url(images/btn-edit.png); background-position: 10px center; background-repeat: no-repeat; }
+.btn-search { }
+.btn-reset { }
+.btn-add:hover, .btn-edit:hover, .btn-search:hover { color: #fff; }
+  </style>
+</head>
+
+<body>
+  <div class="title">发布供应信息</div>
+  <div class="form-item">
+    <label class="w180"><span class="c-red">*</span>供应标题</label>
+    <div>
+      <input id="title" runat="server" class="w420 BGC-gray float-left" type="text" maxlength="20" value=""
+        placeholder="标题" data-validate="{required:'请输入标题！',vtype:'string'}" />
+      <span class="validate-tip HL36"></span>
+    </div>
+  </div>
+  <div class="form-item">
+    <label class="w180">上传图片</label>
+    <div>
+      <label class="w150 HL22 btn default border-gray float-left" for="SupplyImg">上传图片</label>
+      <div><img id="preview" class="float-left mar-T10" src="form/default.png" alt="default"
+          style="width:182px;height:100px;" /></div>
+      <span class="validate-tip HL36"></span>
+    </div>
+  </div>
+  <div class="form-item">
+    <label class="w180"><span class="c-red">*</span>供应类型</label>
+    <div>
+      <div id="type" class="select-box w170 BGC-gray float-left">
+        <div>请选择</div>
+        <input id="supplyType" runat="server" autocomplete="off" type="hidden"
+          data-validate="{required:'请选择类型！',vtype:'string',parent:1}" />
+        <input type="hidden" />
+        <ul>
+          <li data-id="0">牲畜供应</li>
+          <li data-id="1">饲草供应</li>
+          <li data-id="2">二手物品</li>
+          <li data-id="3">其他供应</li>
+        </ul>
+      </div>
+      <span class="validate-tip HL36"></span>
+    </div>
+  </div>
+  <div class="form-item">
+    <label class="w180"><span class="c-red">*</span>供应数量</label>
+    <div>
+      <input id="txtCount" runat="server" class="w180 BGC-gray float-left"
+        data-validate="{required:'请输入数量！',vtype:'string'}" type="text" maxlength="10" value="" />
+      <span class="validate-tip HL36"></span>
+    </div>
+  </div>
+  <div class="form-item">
+    <label class="w180"><span class="c-red">*</span>价格</label>
+    <div>
+      <input id="txtPrice" runat="server" class="w180 BGC-gray float-left" placeholder="价格"
+        data-validate="{required:'请输入价格！',vtype:'custom', reg:'^\\d+(\\.\\d{1,2})?$',tip:'无效的价格'}" type="text"
+        maxlength="10" value="" />
+      <span class="validate-tip HL36"></span>
+    </div>
+  </div>
+  <div class="form-item">
+    <label class="w180"><span class="c-red">*</span>联系人</label>
+    <div>
+      <input id="txtLinkman" runat="server" class="w180 BGC-gray float-left" placeholder="联系人"
+        data-validate="{required:'请输入联系人！',vtype:'string'}" type="text" maxlength="25" value="" />
+      <span class="validate-tip HL36"></span>
+    </div>
+  </div>
+  <div class="form-item">
+    <label class="w180"><span class="c-red">*</span>联系方式</label>
+    <div>
+      <input id="txtLinkinfo" runat="server" class="w420 BGC-gray float-left"
+        data-validate="{required:'请输入联系方式！',vtype:'string'}" type="text" maxlength="100" value=""
+        placeholder="手机号，QQ号，微信号" />
+      <span class="validate-tip HL36"></span>
+    </div>
+  </div>
+  <div class="form-item">
+    <label class="w180">备注</label>
+    <div>
+      <textarea runat="server" id="txtInfo" class="w760 H200 BGC-gray" maxlength="100"></textarea>
+    </div>
+  </div>
+  <div class="bottom">
+    <label id="submit" class="w200 btn btn-lg btn-green">提 交</label>
+  </div>
+  <script>
+    //iframe高度调整
+    window.parent.postMessage("{type:'resizeIframe'}", "*");
+    //要进行验证的地方
+    var vld = new FormValidate("supply");
+    vld.Add("supply", ["#title", "#supplyType", "#txtCount", "#txtPrice", "#txtLinkman", "#txtLinkinfo"]);
+    var s = $(".select-box:first")[0];
+    $.select(s, function () {
+      //下拉框选中回调 重新验证
+      if ($(this).hasClass("validate-error")) {
+        vld.Validate("supply");
+      }
+    });
+    $("#submit").click(function () {
+      if (vld.Validate("supply")) {
+        //表单验证成功 TODO：
+        $('#btnOk').click();
+      }
+    });
+  </script>
+</body>
+
+</html>

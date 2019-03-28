@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>消息提示</title>
+  <link rel="stylesheet" href="../../css/ui.core.css" />
+  <link rel="stylesheet" href="../../css/ui.button.css" />
+  <link rel="stylesheet" href="../../css/ui.notify.css" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/core.js"></script>
+  <script src="../../js/core.notify.js"></script>
+  <style>
+    #center {
+      padding: 2rem;
+    }
+
+    button {
+      position: relative;
+      z-index: 10;
+    }
+
+    #container {
+      position: relative;
+      border: 1px solid #ccc;
+      width: 400px;
+      height: 600px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="center">
+    <button id="btn1">body上显示</button>
+    <button id="btn2">body上隐藏</button>
+    <button id="btn3">div上显示</button>
+    <button id="btn4">div上隐藏</button>
+    <button id="btn5">toast</button>
+    <div id="container">
+      <p>啦啦啦</p>
+      <p>啦啦啦</p>
+      <p>啦啦啦</p>
+      <p>啦啦啦</p>
+    </div>
+  </div>
+  <script>
+    $('#btn1').click(function () {
+      $.notify.showLoad({ speed: 2000 });
+    });
+    $('#btn2').click(function () {
+      $.notify.hideLoad();
+    });
+    $('#btn3').click(function () {
+      $.notify.showLoad({ selector: '#container' });
+    });
+    $('#btn4').click(function () {
+      $.notify.hideLoad({ selector: '#container' });
+    });
+    $('#btn5').click(function () {
+      $.notify.toast({ speed: 1500 });
+    });
+  </script>
+</body>
+
+</html>

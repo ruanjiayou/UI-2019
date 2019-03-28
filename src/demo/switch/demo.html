@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>万能切换</title>
+  <link rel="stylesheet" href="../../css/ui.core.css" />
+  <link rel="stylesheet" href="../../css/ui.button.css" />
+  <link rel="stylesheet" href="../../plugins/lightcode/prism.css" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/core.js"></script>
+  <script src="../../js/demo.js"></script>
+  <script src="../../js/core.switch.js"></script>
+  <script src="../../plugins/lightcode/prism.js"></script>
+  <script src="switch.js"></script>
+  <style>
+    #center {
+      padding: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="center">
+    <xmp id="show">
+      结构(其实只与参数中的映射参数有关,结构可随意)：
+      div.container
+      ul.contents
+      li.content
+      li.content
+      li.content
+      ul.tags 可选
+      li.tag
+      li.tag
+      li.tag
+      可选
+      a.prev
+      a.next
+      a.pause
+      API
+      inited true/false
+      *unInit()
+      *beforSwitch() afterSwitch() callback()
+      container #id .class tag Node 如果为null this即container
+      //selectorMapping[header,content]
+      headerSelector
+      contentSelector
+      *prevSelector 默认.prev
+      *nextSelector 默认.next
+      -------header prevSelector nextSelector 允许jQuery对象长度是0 程序健壮--------------------
+      *activeClass 默认是active
+      activeIndex 默认显示第几个 默认是1
+      *delayTime 1000
+      *autoPlay false
+      loop true/false 无限循环 默认false
+      direction left/top translate scroll类型才有效
+      number header与content的数量对应 默认1-1 可以设置1-多
+      *eventType hover/click
+    </xmp>
+    <span style="color:red;"><span class="txt-deleteline">待实现功能：无限循环 beforeSwitch() afterSwitch()不够科学 第一次调用应该由使用者决定
+        each中调用要call(this,config)</span></span>
+    <p>container和下面的ul不能设置padding和margin~~不然%不能自适应</p>
+    <div class="card">
+      <div class="ui">
+        <style>
+          .slide-box {
+            position: relative;
+            padding-top: 50%;
+            background-color: #ccc;
+          }
+
+          div.contents {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+
+          div.contents>a {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: inline-block;
+          }
+
+          div.contents>a>img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+          }
+
+          ul.maps {
+            text-align: center;
+          }
+
+          ul.maps>li {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            line-height: 15px;
+            border-radius: 50%;
+            background-color: #ccc;
+            text-align: center;
+            cursor: default;
+          }
+
+          ul.maps>li.active {
+            background-color: red;
+            color: white;
+          }
+
+          .prev,
+          .next {
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 34px;
+            height: 56px;
+            margin-top: -28px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            color: #fff;
+            opacity: 0.7;
+            filter: alpha(opacity=70);
+          }
+
+          .prev {
+            background-image: url(left-arrow.png);
+          }
+
+          .next {
+            left: auto;
+            right: 0;
+            background-image: url(right-arrow.png);
+          }
+
+          .slide-box:hover .prev,
+          .slide-box:hover .next {
+            background-color: #999;
+          }
+        </style>
+      </div>
+      <div class="preview-comment">
+        <p>使用场景：多次连续点击有bug</p>
+        <div>选项卡:display/fade/tanslate</div>
+        <div>轮换:number/loop/auto/direction fade/display/tanslate/</div>
+        <div>菜单:trace/slide/ unique/</div>
+        <div>实际使用中 老是调样式</div>
+        <div>contents white-space nowrap overflow hidden</div>
+        <div>contents li display inline-blcok width 100/n%</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="ui">
+        <div id="scroll2" class="slide-box">
+          <div class="contents">
+            <a href="#"><img src="demo1.jpg" /></a>
+            <a href="#"><img src="demo2.jpg" /></a>
+            <a href="#"><img src="demo3.jpg" /></a>
+            <a href="#"><img src="demo4.jpg" /></a>
+            <a href="#"><img src="demo4.jpg" /></a>
+          </div>
+          <label class="prev"></label>
+          <label class="next"></label>
+        </div>
+        <style>
+          .v .contents a {
+            display: block;
+          }
+        </style>
+        <script>
+          $.powerSwitch({
+            container: "#scroll2",//必填
+            //number: 2,
+            loop: true,
+            autoPlay: true,
+            headerSelector: ".maps > li",
+            contentSelector: "a"
+          });
+        </script>
+      </div>
+      <div class="preview-comment">
+        <p>number不为1 水平设width 垂直设height 100/number%</p>
+        <p>垂直方向 a要display block 加类v</p>
+        <p>演示加控制菜单就更好了 不用这么啰嗦</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ui">
+        <div id="tab" class="tabs tabs-cards clearfix">
+          <div class="tabs-header">
+            <div class="active">用户管理</div>
+            <div>配置管理</div>
+            <div>角色管理</div>
+            <div>定时任务补偿</div>
+          </div>
+          <div class="tabs-content">
+            <div>1</div>
+            <div>2<br />2<br />2<br />2<br />2<br /></div>
+            <div>3</div>
+          </div>
+        </div>
+        <style>
+          /* 标签页(选项卡) */
+          .tabs-header {
+            position: relative;
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            border-bottom: 1px solid #D3DCE6;
+          }
+
+          .tabs-header>div {
+            height: 40px;
+            line-height: 40px;
+            float: left;
+            margin-bottom: -1px;
+            padding: 0 15px;
+            font-size: 14px;
+            cursor: pointer;
+          }
+
+          .tabs-header>div.active {
+            color: #20a0ff;
+          }
+
+          .tabs-content>div {
+            float: left;
+            width: 100%;
+            display: none;
+          }
+
+          .tabs-content>div:first-child {
+            display: block;
+          }
+        </style>
+        <script>
+          //$.powerSwitch({
+          //    container: "#tab",//必填
+          //    animation: "display",
+          //    headerSelector: ".tabs-header > div",
+          //    contentSelector: ".tabs-content > div"
+          //});
+          $('#tab').tabs({ animation: 'fade' });
+        </script>
+      </div>
+      <div class="preview-comment">
+        <p>display</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ui">
+        <ul id="menu1">
+          <li>
+            <a class="menu-item" href="#">第一项</a>
+            <ul class="menu-item-content">
+              <li><a href="#">三级菜单</a></li>
+              <li><a href="#">三级菜单</a></li>
+              <li><a href="#">三级菜单</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="menu-item" href="#">第二项</a>
+            <ul class="item-content">
+              <li><a href="#">三级菜单</a></li>
+              <li><a href="#">三级菜单</a></li>
+              <li><a href="#">三级菜单</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="menu-item" href="#">empty</a>
+          </li>
+        </ul>
+        <style>
+          #menu1>li {}
+
+          .menu-item {
+            line-height: 36px;
+            display: block;
+            text-align: left;
+            color: #fff;
+            background: url(images/menu-bg.png) center center no-repeat;
+          }
+
+          .menu-item.active {
+            background: pink;
+          }
+
+          .menu-item+ul {
+            display: none;
+          }
+
+          .menu-item.active+ul {
+            display: block;
+          }
+
+          .menu-item+ul li {
+            line-height: 30px;
+            text-indent: 50px;
+            background: url(images/icon-circle.png) 30px center no-repeat;
+          }
+
+          .menu-item+ul a {
+            font-size: 12px;
+            display: block;
+            color: #d7a91c;
+          }
+        </style>
+        <script>
+          $('#menu1').menus({ unique: true, stopPropagation: true });
+        </script>
+      </div>
+      <div class="preview-comment">
+        <p>默认效果 左侧手风琴菜单 unique</p>
+        <p>导航下拉菜单效果 靠样式absolute</p>
+        <p>unique false .active不应该有样式</p>
+      </div>
+    </div>
+    <script>
+      /*
+      2016-12-15 15:47:50 display 效果通过
+      2016-12-15 15:48:01 visibility 参数废弃
+      2016-12-15 22:23:02 scroll left效果通过 display效果通过
+      2016-12-17 19:38:42 将doAnimation的参数简化为一个index
+      2016-12-17 21:57:40 fade和slide效果通过 第一次doAnimation调用不能放封装好的js里 应该使用者按需添加
+      2017-8-12 00:47:57 修复了loop的bug 多次连续点击有bug还未修复  补：已修复
+      */</script>
+</body>
+
+</html>

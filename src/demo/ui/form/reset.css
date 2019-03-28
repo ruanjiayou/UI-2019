@@ -1,0 +1,1086 @@
+/* 2016-10-14 08:56:12
+    新一轮重构 首先将reset-temp.css干掉 reset-common.css为临时样式
+    第一轮css重构结束 2016-10-15 23:22:38
+    */
+
+/*****
+    1.重置所有浏览器的初始样式 
+******/
+
+html,
+body {
+  margin: 0;
+  font-family: "Microsoft YaHei";
+  font-size: 12px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code {
+  padding: 0;
+  margin: 0;
+}
+
+/* l-v-h-a原则 */
+
+a {
+  text-decoration: none;
+}
+
+a:link,
+a:visited {
+  color: #333;
+}
+
+a:hover,
+a:active {
+  color: #c00;
+}
+
+a:focus {
+  outline: 0 none;
+}
+
+img,
+iframe,
+fieldset {
+  border: 0 none;
+}
+
+/* frameborder="0"设置边框是不否为3维（0=否，1=是） 要在标签内写 为了对付IE */
+
+iframe {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+img {
+  vertical-align: middle;
+  /* -ms-interpolation-mode: bicubic;*/
+}
+
+/* IE7中缩放采用高质量双线性图片采样 */
+
+ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+ul>li {
+  list-style-type: none;
+}
+
+input {
+  border: 1px solid #ccc;
+  padding: 4px 0 4px 8px;
+  background-color: #fff;
+}
+
+input[type="text"]:focus {
+  border-color: rgb(82, 168, 236);
+  outline: none;
+}
+
+/*input[type="text"]:focus { border-color:rgba(82, 168, 236, 0.8);outline:0;outline:thin dotted \9;-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);-moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236, 0.6); }*/
+
+p {
+  margin: 5px 0;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+/* 允许长单词换到下一行 可继承：normal (默认在可以断开的点断开) break-word 断开*/
+
+textarea {
+  border: 1px solid #b0b0b0;
+  overflow: auto;
+  resize: vertical;
+}
+
+/* IE不支持resize？*/
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  word-break: break-all;
+}
+
+/* 合并表格的边框线*/
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+article,
+aside,
+dialog,
+footer,
+header,
+section,
+footer,
+nav,
+figure,
+menu {
+  display: block;
+}
+
+/* H5标签兼容低版本IE,页面中需要用条件注释对每个H5标签用document.createElement。 例如：document.createElement("header");*/
+
+/* 渐进增强效果：设置页面文字等在拖动鼠标选中情况下的背景色与文字颜色 */
+
+::selection {
+  color: #fff;
+  background-color: #f99a41;
+}
+
+::-moz-selection {
+  color: #fff;
+  background-color: #f99a41;
+}
+
+::-webkit-selection {
+  color: #fff;
+  background-color: #f99a41;
+}
+
+/****
+    2.常用部分
+*****/
+
+.clearfix:before,
+.clearfix:after {
+  display: block;
+  height: 0;
+  clear: both;
+  content: "\0020";
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+.wrap-margin {
+  margin: 20px;
+}
+
+.wrap-padding {
+  padding: 20px;
+}
+
+.anti-select {
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  user-select: none;
+}
+
+.ime-disabled {
+  ime-mode: disabled;
+}
+
+/* 关闭输入法，适合输入验证码 只有IE和Firefox支持*/
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+/* 字体 */
+
+.txt-left {
+  text-align: left;
+}
+
+.txt-right {
+  text-align: right;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-nd {
+  text-decoration: none;
+}
+
+/*没修饰线*/
+
+.txt-hide {
+  text-indent: -9999px;
+}
+
+.txt-omit {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 过长省略 */
+
+.font-italic {
+  font-style: italic;
+}
+
+/* 斜体 */
+
+/* 可见性 */
+
+.show-block {
+  display: block !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.hidev {
+  visibility: hidden;
+}
+
+.BFC {
+  overflow: hidden;
+}
+
+.pos-rel {
+  position: relative;
+}
+
+.pos-abs {
+  position: absolute;
+}
+
+.mar-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.no-radius {
+  border-radius: 0;
+}
+
+.Wfull {
+  width: 100%;
+}
+
+.Hfull {
+  height: 100%;
+}
+
+.no-border {
+  border-width: 0;
+}
+
+/****
+    2.组件部分
+*****/
+
+/* 页面布局
+    n等列等x间距 如果x为0 最后一层div不用包裹 使用box-sizing也可以减少一层
+    div.box margin: 0 -x/2px;
+        > div width: 100/n%;
+        > div > div margin: 0 x/2px;
+    自定义多列
+*/
+
+/* 间距20px */
+
+.offset-20 {
+  margin: auto -10px;
+}
+
+.offset-20>div>div {
+  margin: 0 10px;
+  min-height: 36px;
+  background-color: #ccc;
+}
+
+/* 间距10px */
+
+.offset-10 {
+  margin: auto -5px;
+}
+
+.offset-10>div>div {
+  margin: 0 5px;
+  min-height: 36px;
+  background-color: #ccc;
+}
+
+/* 4列 */
+
+.col-4s>div {
+  float: left;
+  width: 25%;
+}
+
+/* 2列 */
+
+.col-2s>div {
+  float: left;
+  width: 50%;
+}
+
+/* 按钮 */
+
+button,
+button:focus {
+  outline: 0 none;
+  border: 0 none;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  padding: 6px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+  z-index: 2;
+  behavior: url(/ie-css3.htc);
+}
+
+.btn {
+  background-color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.7;
+}
+
+a.btn {
+  text-decoration: none;
+}
+
+.btn-link {
+  color: #0f99f4;
+  text-decoration: underline;
+  text-indent: 5px;
+}
+
+.btn.default,
+.btn.border.default {
+  background-color: #f0f0f0;
+}
+
+.btn.border {
+  background-color: #fff;
+  border: 1px solid #d8d8d8;
+  color: #333;
+}
+
+.btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn>i {
+  margin: 0 3px;
+}
+
+.btn-sm {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.btn-md {
+  padding: 8px 18px;
+  font-size: 16px;
+}
+
+.btn-lg {
+  padding: 10px 22px;
+  font-size: 20px;
+}
+
+.btn-block {
+  display: block;
+}
+
+.btn-success {
+  background-color: #42D885;
+  color: #fff;
+}
+
+.btn-warning {
+  background-color: #F7BA2A;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #FF4949;
+  color: #fff;
+}
+
+.btn-info {
+  background-color: #50BFFF;
+  color: #fff;
+}
+
+.btn-link.delete {
+  background: url(images/delete.png) left center no-repeat;
+}
+
+.btn-link.edit {
+  background: url(images/edit.png) left center no-repeat;
+}
+
+.border.btn-success:hover {
+  border-color: #42D885;
+  color: #42D885;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+
+.border.btn-warning:hover {
+  border-color: #F7BA2A;
+  color: #F7BA2A;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+
+.border.btn-danger:hover {
+  border-color: #FF4949;
+  color: #FF4949;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+
+.border.btn-info:hover {
+  border-color: #50BFFF;
+  color: #50BFFF;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+
+/* 标签页(选项卡) */
+
+.tabs-header {
+  position: relative;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #D3DCE6;
+}
+
+.tabs-header>div {
+  height: 40px;
+  line-height: 40px;
+  float: left;
+  margin-bottom: -1px;
+  padding: 0 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tabs-header>div.active {
+  color: #20a0ff;
+}
+
+.tabs-header>label {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  display: inline-block;
+  height: 3px;
+  background-color: #20a0ff;
+}
+
+.tabs-content>div {
+  float: left;
+  width: 100%;
+  visibility: hidden;
+}
+
+.tabs-content>div:first-child {
+  visibility: visible;
+}
+
+/* --可选选项卡样式 */
+
+.tabs-tabs>.tabs-header>div.active {
+  margin-top: -1px;
+  border-radius: 4px 4px 0 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #D3DCE6 #D3DCE6 #FFF;
+}
+
+/* --可选卡片样式 */
+
+.tabs-cards {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  border: 1px solid #D3DCE6;
+}
+
+.tabs-cards>.tabs-header {
+  background-color: #EFF2F7;
+}
+
+.tabs-cards>.tabs-header>div:first-child {
+  margin-left: -1px;
+}
+
+.tabs-cards>.tabs-header>div {
+  margin-right: -1px;
+}
+
+.tabs-cards>.tabs-header>div.active {
+  background-color: #fff;
+  border-left: 1px solid #D3DCE6;
+  border-right: 1px solid #D3DCE6;
+}
+
+/* 进度条 */
+
+.progress {
+  position: relative;
+  min-height: 6px;
+  background-color: #E5E9F2;
+}
+
+.progress>div:first-child {
+  height: 100%;
+  min-height: 6px;
+  color: #fff;
+  text-align: right;
+}
+
+.progress.radius,
+.progress.radius>div:first-child {
+  border-radius: 100px;
+}
+
+.progress.inner>div:first-child>i {
+  padding: 0 8px;
+}
+
+.progress.outer>i {
+  position: absolute;
+  left: 100%;
+  top: -80%;
+  padding-left: 10px;
+  line-height: 14.4px;
+  font-size: 14.4px;
+}
+
+.progress.red>div:first-child {
+  background-color: #FF4949;
+}
+
+.progress.red>i.fa {
+  color: #FF4949;
+}
+
+.progress.green>div:first-child {
+  background-color: #13CE66;
+}
+
+.progress.green>i.fa {
+  color: #13CE66;
+}
+
+.progress.blue>div:first-child {
+  background-color: #20A0FF;
+}
+
+.progress.blue>i.fa {
+  color: #20A0FF;
+}
+
+/* 分页 */
+
+/* 导航菜单 */
+
+/* 带前后图标各种input */
+
+/* 步骤条 */
+
+/* 加载中 */
+
+/* 列表 copy之前的 */
+
+.news-list>li {
+  border-bottom: 1px dashed #ccc;
+  *zoom: 1;
+}
+
+.news-list>li:after {
+  display: block;
+  height: 0;
+  clear: both;
+  content: "\0020";
+}
+
+.news-list>li>span {
+  float: right;
+  margin-left: 10px;
+}
+
+.news-list>li>a {
+  display: block;
+  background: url(images/dot1.jpg) 6px center no-repeat;
+  text-indent: 18px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+/* 横向列表 */
+
+.row-list>li {
+  float: left;
+  line-height: inherit;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.row-list>li>a {
+  box-sizing: border-box;
+  display: block;
+  line-height: inherit;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.row-list>li>a:hover {
+  color: #0f0;
+}
+
+/* 表格 */
+
+th,
+td {
+  padding: 5px 10px;
+  height: 30px;
+}
+
+tr.title {
+  text-align: left;
+  border-bottom: 0 none;
+}
+
+tr.even {
+  background-color: #FAFAFA;
+}
+
+tr {
+  border-top: 1px solid #ccc;
+}
+
+table.default {
+  border: 1px solid #ccc;
+}
+
+table.border th,
+table.border td {
+  border: 1px solid #ccc;
+}
+
+/* 冻结的表头 */
+
+.table-thead {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.table-body {
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+}
+
+.table-body tr {
+  border-top: 0 none;
+}
+
+.table-body tr+tr {
+  border-top: 1px solid #ccc;
+}
+
+/* 表单 */
+
+.form-item {
+  margin: 15px 0;
+  *zoom: 1;
+}
+
+.form-item>label {
+  float: left;
+  display: block;
+  height: 35px;
+  line-height: 35px;
+  font-size: 15px;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.form-item>div {
+  float: left;
+  padding-left: 10px;
+  *zoom: 1;
+}
+
+.form-item:before,
+.form-item:after,
+.form-item>div:before,
+.form-item>div:after {
+  display: block;
+  height: 0;
+  clear: both;
+  content: "";
+}
+
+.form-item>div>input[type="text"] {
+  position: relative;
+  height: 25px;
+  line-height: 25px;
+  border-radius: 4px;
+  padding: 4px 0 4px 8px;
+  z-index: 2;
+  behavior: url(/ie-css3.htc);
+}
+
+/* -- 单选复选 */
+
+.radio-flat,
+.check-flat {
+  display: inline-block;
+  line-height: 20px;
+  margin: 10px;
+  cursor: pointer;
+  *zoom: 1;
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  user-select: none;
+  white-space: nowrap;
+}
+
+.radio-flat:before,
+.radio-flat:after,
+.check-flat:before,
+.check-flat:after {
+  display: block;
+  height: 0;
+  clear: both;
+  content: "\0020";
+}
+
+.radio-flat>input,
+.check-flat>input {
+  display: none;
+}
+
+.radio-flat>i,
+.check-flat>i {
+  display: inline-block;
+  float: left;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
+  background: url(images/blue.png) 0 0 no-repeat;
+  cursor: pointer;
+}
+
+.radio-flat.disabled,
+.check-flat.disabled {
+  cursor: not-allowed;
+}
+
+.radio-flat>i {
+  background-position: -88px 0;
+}
+
+.radio-flat.checked>i {
+  background-position: -110px 0;
+}
+
+.radio-flat.disabled>i {
+  background-position: -132px 0;
+  cursor: not-allowed;
+}
+
+.radio-flat.checked.disabled>i {
+  background-position: -154px 0;
+}
+
+.check-flat>i {
+  background-position: 0 0;
+}
+
+.check-flat.checked>i {
+  background-position: -22px 0;
+}
+
+.check-flat.disabled>i {
+  background-position: -44px 0;
+  cursor: not-allowed;
+}
+
+.check-flat.checked.disabled>i {
+  background-position: -66px 0;
+}
+
+/* -- 表单验证 */
+
+.validate-success {
+  border-color: #2eb9ed !important;
+}
+
+.validate-error {
+  border-color: #f00 !important;
+}
+
+.validate-tip {
+  color: #d00;
+  padding: 0 5px;
+}
+
+.validate-ok {
+  padding-left: 20px;
+  background: url(images/validate-ok.png) 5px center no-repeat;
+}
+
+.validate-uok {
+  padding-left: 20px;
+  background: url(images/validate-uok.png) 5px center no-repeat;
+}
+
+/* -- 下拉框 */
+
+.select-box {
+  position: relative;
+  display: inline-block;
+  min-width: 50px;
+  line-height: 35px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.select-box>div {
+  box-sizing: border-box;
+  height: 100%;
+  line-height: inherit;
+  padding: 0 25px 0 8px;
+  background: url(images/select-bg.png) right center no-repeat;
+  color: #807a62;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.select-box>div:hover {
+  background-image: url(images/select-bg-hover.png);
+}
+
+.select-box>ul {
+  position: absolute;
+  left: 0;
+  display: none;
+  width: 100%;
+  max-height: 200px;
+  margin: -1px 0 0 -1px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  line-height: inherit;
+  z-index: 5;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
+.select-box>ul>li {
+  height: 32px;
+  line-height: 32px;
+  padding-left: 10px;
+  padding-right: 5px;
+  cursor: default;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.select-box>ul>li:hover {
+  background-color: #ccc;
+}
+
+/* -- 对话框 */
+
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  filter: alpha(opacity=38);
+  opacity: 0.38;
+  z-index: 10;
+}
+
+.dialog-box {
+  position: fixed;
+  left: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #fff;
+  z-index: 15;
+  visibility: hidden;
+}
+
+.dialog-box h2.dialog-title {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  margin: 0;
+  padding-left: 10px;
+  background-color: #d0cfcb;
+  color: #383836;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.dialog-box h2.dialog-title>div.dialog-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  margin-top: -1px;
+  margin-right: -1px;
+  background: url(images/dialog-close.png) center center no-repeat;
+}
+
+.dialog-box h2.dialog-title>div.dialog-close:hover {
+  background-image: url(images/dialog-close-hover.png);
+}
+
+.dialog-box .iframe-box {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.dialog-box>div.dialog-view {
+  position: relative;
+  overflow: hidden;
+}
+
+.dialog-box>div.dialog-view>div {
+  height: 100%;
+  overflow: auto;
+}
+
+/* 徽标数 */
+
+.badge {
+  position: absolute;
+  top: -10px;
+  right: 0px;
+  transform: translateX(50%);
+  min-width: 8px;
+  height: 20px;
+  border-radius: 10px;
+  background: #F50 none repeat scroll 0% 0%;
+  border: 1px solid transparent;
+  color: #FFF;
+  line-height: 18px;
+  text-align: center;
+  padding: 0px 6px;
+  font-size: 12px;
+  transform-origin: -10% center 0px;
+  z-index: 10;
+  box-shadow: 0px 0px 0px 1px #FFF;
+  *margin-right: -10px;
+  margin-right: -10px\0;
+}
+
+.badge2 {
+  position: absolute;
+  top: -10px;
+  z-index: 8;
+  left: 100%;
+  height: 20px;
+  line-height: 18px;
+  *line-height: 20px;
+  line-height: 20px\0;
+  margin-left: -6px;
+  background-color: #c00;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}
+
+.badge2>span,
+.badge2>label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 10px;
+  height: 100%;
+}
+
+.badge2>span {
+  left: -7px;
+  background: url(images/l_b.png) left center no-repeat;
+}
+
+.badge2>label {
+  left: 100%;
+  margin-left: -3px;
+  background: url(images/r_b.png) left center no-repeat;
+}
+
+/*****
+    3.各种尺寸的 width、height、line-height、margin、padding、font-size、color、background-color
+******/
+
+/*这里不写 用extent的？*/

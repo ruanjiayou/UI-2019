@@ -1,0 +1,161 @@
+/* IE7的问题：不支持:before/:after 宽度百分比之和为100有时会大于100% 不支持box-sizing 不支持字体图标 */
+
+/* 1.统一浏览器默认样式 */
+
+html,
+body {
+  margin: 0;
+  font-family: "Microsoft YaHei";
+  font-size: 12px;
+}
+
+/* l-v-h-a原则 */
+
+a:link,
+a:visited {
+  color: #333;
+}
+
+a:hover,
+a:active {
+  color: #c00;
+}
+
+a:focus {
+  outline: 0 none;
+}
+
+img,
+iframe,
+fieldset {
+  border: 0 none;
+}
+
+/* frameborder="0"设置边框是不否为3维（0=否，1=是） 要在标签内写 为了对付IE */
+
+iframe {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+ul>li {
+  list-style-type: none;
+}
+
+input {
+  border: 1px solid #ccc;
+  padding: 4px 0 4px 8px;
+  background-color: #fff;
+}
+
+input:focus {
+  outline: none;
+}
+
+textarea {
+  border: 1px solid #b0b0b0;
+  resize: vertical;
+}
+
+/*  不允许用户通过右下角的三角形调整 */
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+  word-break: break-all;
+}
+
+/* 合并表格的边框线*/
+
+th,
+td {
+  padding: 5px 10px;
+  height: 30px;
+}
+
+article,
+aside,
+dialog,
+footer,
+header,
+section,
+footer,
+nav,
+figure,
+menu {
+  display: block;
+}
+
+/* H5标签兼容低版本IE,页面中需要用条件注释对每个H5标签用document.createElement。 例如：document.createElement("header");*/
+
+button,
+button:focus {
+  outline: 0 none;
+  border: 0 none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* 渐进增强效果：设置页面文字等在拖动鼠标选中情况下的背景色与文字颜色 */
+
+::selection {
+  color: #fff;
+  background-color: #f99a41;
+}
+
+::-moz-selection {
+  color: #fff;
+  background-color: #f99a41;
+}
+
+::-webkit-selection {
+  color: #fff;
+  background-color: #f99a41;
+}
+
+.no-select {
+  -moz-user-select: none;
+  /*火狐*/
+  -webkit-user-select: none;
+  /*webkit浏览器*/
+  -ms-user-select: none;
+  /*IE10*/
+  -khtml-user-select: none;
+  /*早期浏览器*/
+  user-select: none;
+}
+
+.no-ime {
+  ime-mode: disabled;
+}
+
+/* 关闭输入法，适合输入验证码 只有IE和Firefox支持*/
+
+.clearfix:before,
+.clearfix:after {
+  display: block;
+  height: 0;
+  clear: both;
+  content: "\200B";
+}
+
+/* 零宽度字符 */
+
+.clearfix {
+  *zoom: 1;
+}
+
+/* IE7不支持:before :after */

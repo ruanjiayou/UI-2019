@@ -1,0 +1,188 @@
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：管理系统4大部分： 
+        查询部分 page-query
+        信息表格 page-info
+        数据列表 page-list
+        表单输入 page-form
+      表格顶部表头用 top表示
+      表单左名称(title表示)右数值
+      2017-5-3 14:00:04 .page-*形式的类改为 data-page = *的属性
+*/
+
+@import "mixins.less";
+.page-title {
+  line-height: 2rem;
+  padding: 0 1.25rem;
+  font-size: 1rem;
+  border-bottom: 1px solid #006934;
+  color: #006934;
+  background: #E7F3EB;
+}
+
+label.validate-tip,
+span.validate-tip,
+div.validate-tip {}
+
+.page-wrap {
+  padding: 0 1rem;
+}
+
+/* page-query */
+
+[role="page-query"] {
+  margin-bottom: 0.66*@body-font-size;
+  background-color: @page-query-bg;
+  table {
+    table-layout: initial;
+  }
+  td {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .top {
+    background-color: @table-border-color;
+  }
+  .title {
+    padding-right: 0.5*@body-font-size;
+    text-align: right;
+    white-space: nowrap;
+  }
+}
+
+/* page-info */
+
+[role="page-info"] {
+  margin: 0.66*@body-font-size 0;
+  background-color: @page-info-bg;
+  table {
+    table-layout: initial;
+  }
+  td {
+    padding: 0 0.5*@body-font-size;
+    border: 1px solid @page-info-border;
+  }
+  .title {
+    background-color: @page-info-title-bg;
+    white-space: nowrap;
+  }
+}
+
+/* page-form 表单提供3种形式 */
+
+/* table形式 通过col控制左右宽度更佳 */
+
+[role="page-form"] {
+  tr {
+    height: 3*@body-font-size;
+  }
+  td {
+    padding-left: 0.5*@body-font-size;
+    padding-right: 0.5*@body-font-size;
+    text-align: right;
+  }
+  td+td {
+    text-align: left;
+  }
+}
+
+.form-item {
+  line-height: 2rem;
+  margin: 1rem 0;
+  *zoom: 1;
+}
+
+/* label+div形式 */
+
+.form-item>label {
+  float: left;
+  display: block;
+  font-size: 1rem;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.form-item>div {
+  float: left;
+  padding-left: 0.67rem;
+  *zoom: 1;
+}
+
+.form-item:before,
+.form-item:after,
+.form-item>div:before,
+.form-item>div:after {
+  display: block;
+  height: 0;
+  clear: both;
+  content: "";
+}
+
+.form-item>div>input[type="text"] {
+  position: relative;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0 0.25rem 0.5rem;
+  z-index: 2;
+}
+
+/* ul li形式 */
+
+.form-item>li {
+  *zoom: 1;
+  margin: 0.67rem 0;
+}
+
+.form-item>li>label {
+  float: left;
+  display: block;
+  font-size: 1rem;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.form-item>li>div {
+  float: left;
+  padding-left: 0.67rem;
+  *zoom: 1;
+}
+
+.form-item>li:before,
+.form-item>li:after,
+.form-item>li>div:before,
+.form-item>li>div:after {
+  display: block;
+  height: 0;
+  clear: both;
+  content: "";
+}
+
+.form-item>li>div>input[type="text"] {
+  position: relative;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0 0.25rem 5rem;
+  z-index: 2;
+}
+
+/* page-list */
+
+[role="page-list"] {
+  min-height: 20rem;
+  border-left: 0 solid transparent;
+  border-right: 1px solid @table-border-color;
+  border-bottom: 1px solid @table-border-color;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAKCAYAAAB10jRKAAAAEElEQVQImWM4c+bMfwZSCABMECHfsN9s6gAAAABJRU5ErkJggg==") 1px 0 repeat-y;
+  margin-bottom: @body-font-size;
+  &>table {
+    margin-left: 1px;
+    margin-bottom: -1px;
+  }
+}

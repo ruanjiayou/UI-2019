@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>文件上传</title>
+  <link rel="stylesheet" href="../../css/ui.core.css" />
+  <link rel="stylesheet" href="../../css/ui.button.css" />
+  <link rel="stylesheet" href="../../plugins/lightcode/prism.css" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/core.js"></script>
+  <script src="../../js/core.upload.js"></script>
+  <script src="../../js/demo.js"></script>
+  <script src="../../plugins/lightcode/prism.js"></script>
+  <style>
+    #center {
+      padding: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="center">
+    <pre>
+            firefox 50.0 ok
+            chrome 42.0
+            IE7/8/9 不支持multiple
+            2017-5-11 09:19:01 
+                获取当前目录方方法：
+                    System.IO.Path.GetDirectoryName(Page.Request.PhysicalPath) 成功但后面无/结尾
+                    System.Web.HttpContext.Current.Request.MapPath("/")        后面无/结尾、只能获取到服务器根目录在服务器的真实路径
+                    Page.Server.MapPath("/") 成功后面有/结尾、只能获取到服务器根目录在服务器的真实路径
+            2017-5-11 14:08:43
+                跨域要设置CORS
+                    Response.Headers.Add("Access-Control-Allow-Method", "GET,POST,PUT,DELETE,HEAD,OPTIONS");
+                    Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                设置了CORS反而出错造成xhr的status一直为0 200永远到不了。
+                还有input必须要设置name不然不会传到服务器！！！
+            2017-5-11 14:53:37
+                统一post提交 FF chrome使用FileReader 支持跨域支持多文件
+                1.IE使用iframe + this.contentDocument.body.innerHTML || this.contentWindow.document.body.innerHTML; 获取iframe中的东西，但不能跨域
+                2.使用隐藏域+parent.postMessage() IE7之上可以跨域 也可以在iframe中直接调用parent的方法 jsonp？ 但不能回调！
+                3.通过window.name来传递字符串。
+                    1).post前清空window.name 解决iframe load两次的问题
+                    2).后台upload.aspx页面中设置parent.name
+                    2).iframe onload中读取window.name
+            2017-5-26 12:02:46 新增before参数 2017-5-26 14:34:46 用postMessage就不需要这个了 本身有beforeSend
+            IE11中input必须要插入到body中
+            ie9不支持FileReader
+            ie8/ie9 postMessage支持良好 但为什么不能删除new出来的form？ 把oForm放到click事件上面即可
+            小结：h5浏览器和IE9之上的浏览器使用FileReader；IE8/9使用postMassage+top的变量 这是可行的
+                  不考虑跨域的情况 IE8/9 获取iframe的内容+onload事件 比上面的更完美！！！
+        </pre>
+    <div class="card">
+      <div class="ui">
+        <label id="upload" class="btn btn-info">上传</label>
+        <ul id="uploadfiles">
+          <li>上传列表</li>
+        </ul>
+        <script>
+          function deal(txt) {
+            try {
+              var json = eval("(" + txt + ")");
+              for (var i = 0; i < json.lists.length; i++) {
+                $('#uploadfiles').append('<li>' + json.lists[i] + '</li>');
+              }
+            }
+            catch (e) {
+
+            }
+          }
+          $("#upload").upload({
+            url: "/dev-UI-文件上传/upload.aspx",
+            multiple: true,
+            onUpload: function (per) {
+              console.log("进度:" + per);
+            },
+            callback: function (x) {
+              console.log('callback:');
+              deal(x);
+            },
+            beforSend: function () {
+              console.log("befor:");
+            }
+          });
+        </script>
+      </div>
+      <div class="preview-comment">
+        <p>1.页面引入jQuery和core.upload.js</p>
+        <p>2.使用 $.upload(selector, options);</p>
+      </div>
+    </div>
+    <xmp>
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAKUlEQVRIie3NoQEAAAgDoJ2+z/UMDQQyaTsXIhaLxWKxWCwWi8Xiv/ECTuDG9a3dQMwAAAAASUVORK5CYII=" />
+    </xmp>
+    <img id="res"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAKUlEQVRIie3NoQEAAAgDoJ2+z/UMDQQyaTsXIhaLxWKxWCwWi8Xiv/ECTuDG9a3dQMwAAAAASUVORK5CYII=" />
+  </div>
+  <script>
+
+    $(window).on("message", function (e) {
+      console.log('message:');
+      //deal(e.originalEvent.data);
+    });
+  </script>
+</body>
+
+</html>

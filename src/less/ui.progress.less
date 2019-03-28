@@ -1,0 +1,87 @@
+/**
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：进度条样式
+
+**/
+
+@import "mixins.less";
+[data-progress] {
+  position: relative;
+  margin: 1rem 0;
+  background-color: @component-bg;
+}
+
+[data-progress]>[role='bar'] {
+  width: 0;
+  min-height: 2px;
+  text-align: right;
+}
+
+//垂直样式
+[data-progress~='vertical'] {
+  display: inline-block;
+  width: 0.5*@body-font-size;
+  height: 5*@body-font-size;
+}
+
+[data-progress~='vertical']>[role='bar'] {
+  width: 100%;
+  position: absolute;
+}
+
+//圆角样式
+[data-progress~='radius'],
+[data-progress~='radius']>[role='bar'] {
+  border-radius: 10*@body-font-size;
+}
+
+//inner样式
+[data-progress~='inner']>[role='bar'] {
+  padding: 0 0.66*@body-font-size;
+  color: @body-text-color;
+}
+
+//outer样式
+[data-progress~='outer'][data-progress~='txt'] {
+  margin-right: 3*@body-font-size;
+}
+
+[data-progress~='outer']>[role='bar'] {
+  min-height: 0.5*@body-font-size;
+}
+
+[data-progress~='outer'] [role='txt'] {
+  position: absolute;
+  left: 100%;
+  top: -50%;
+  width: 3*@body-font-size;
+  text-align: center;
+  line-height: @body-font-size;
+  font-size: @body-font-size;
+}
+
+//颜色样式
+[data-progress~='red']>[role='bar'] {
+  background-color: #FF4949;
+}
+
+[data-progress~='red'] {
+  color: #FF4949;
+}
+
+[data-progress~='green']>[role='bar'] {
+  background-color: #13CE66;
+}
+
+[data-progress~='green'] {
+  color: #13CE66;
+}
+
+[data-progress~='blue']>[role='bar'] {
+  background-color: #20A0FF;
+}
+
+[data-progress~='blue'] {
+  color: #20A0FF;
+}

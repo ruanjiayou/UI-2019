@@ -1,0 +1,59 @@
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：还是放less中
+    ceil 22px
+    1.5*R = 21
+
+    0 check
+    21=1.5*R checked
+    42=3*R   check.disable
+    63=4.5*R checked.disable
+    88=6*R   radio
+   110=7.5*R radio.checked
+   132=9*R   radio.disable
+   154=10.5R radio.checked.disable
+*/
+
+@import "mixins.less";
+[role="checkbtn"],
+[role="radiobtn"] {
+  display: inline-block;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  margin-right: 0.83*@body-font-size;
+  padding-left: 1.8*@body-font-size;
+  background: url(../images/blue-v.png) 0 0 no-repeat; //background-size: 1.5*@body-font-size;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  .clearfix;
+  & input {
+    display: none;
+  }
+}
+
+[role="radiobtn"] {
+  background-position-y: -88px;
+  &.checked {
+    background-position-y: -110px;
+  }
+  &.disabled {
+    background-position-y: -132px;
+  }
+  &.checked.disabled {
+    background-position-y: -154px;
+  }
+}
+
+[role="checkbtn"] {
+  &.checked {
+    background-position-y: -22px;
+  }
+  &.disabled {
+    background-position-y: -44px;
+  }
+  &.checked.disabled {
+    background-position-y: -66px;
+  }
+}

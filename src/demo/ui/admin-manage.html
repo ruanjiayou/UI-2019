@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>管理系统</title>
+  <link rel="stylesheet" href="../../css/min/all.css" />
+  <link rel="stylesheet" href="../../plugins/lightcode/prism.js" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/core.js"></script>
+  <script src="../../js/core.checkbox.js"></script>
+  <script src="../../js/core.radio.js"></script>
+  <script src="../../js/core.form-validate.js"></script>
+  <script src="../../js/demo.js"></script>
+  <script src="../../plugins/lightcode/prism.js"></script>
+  <script src="../../plugins/My97DatePicker/WdatePicker.js"></script>
+  <script src="../../plugins/jquery.validate.min.js"></script>
+  <style>
+    #center {
+      padding: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="center">
+    <p></p>
+    <p>仿公司样式</p>
+    <p>1.查询部分</p>
+    <div class="card">
+      <div class="ui">
+        <div role="page-query">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td class="title" style="width:80px;">用户名:</td>
+                <td>
+                  <input class="txt " name="txtUserName" type="text" value="" />
+                </td>
+                <td class="title" style="width:80px;">登录日期:</td>
+                <td>
+                  <input class="txt Wdate" name="txtDateStart" type="text" value=""
+                    onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                  <span>至</span>
+                  <input class="txt Wdate" name="txtDateEnd" type="text" value=""
+                    onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                </td>
+                <td>
+                  <label class="btn btn-info" onclick="query();">查询</label>
+                  <label class="btn reset" onclick="clearQuery();">重置</label>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p>2.按钮部分(由基础样式组合而成 无需特殊样式)</p>
+    <div>
+      <label class="btn btn-info">添加</label>
+    </div>
+    <p>3. page-info部分(展示数据 有时会用到)</p>
+    <div class="card">
+      <div class="ui">
+        <div role="page-info">
+          <table class="table">
+            <colgroup>
+              <col style="width:80px;" />
+              <col />
+            </colgroup>
+            <tr>
+              <td class="title">姓名：</td>
+              <td>
+                <label role="radiobtn" class="">苹果<input name="fruit" type="radio" /></label>
+                <label role="radiobtn" class="checked">香蕉<input name="fruit" type="radio" /></label>
+                <label role="radiobtn" class="disabled">汽车<input name="vehicle" type="radio" /></label>
+              </td>
+            </tr>
+            <tr>
+              <td class="title">姓名：</td>
+              <td>
+                <label role="checkbtn" class="">小<input name="size[]" type="checkbox" checked /></label>
+                <label role="checkbtn" class=" checked">中<input name="size[]" type="checkbox" /></label>
+                <label role="checkbtn" class=" disabled">大<input name="size[]" type="checkbox" /></label>
+              </td>
+            </tr>
+            <tr>
+              <td class="title">姓名：</td>
+              <td>xxxxxxxxxxxxxxx</td>
+            </tr>
+            <tr>
+              <td class="title">姓名：</td>
+              <td>xxxxxxxxxxxxxxxxxx</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="txt-right">
+      <label class="btn btn-info">返回</label>
+    </div>
+    <p>4.表单部分</p>
+    <div class="card">
+      <div class="ui">
+        <div role="page-form">
+          <form id="form1">
+            <table class="">
+              <colgroup>
+                <col class="w120" />
+                <col />
+              </colgroup>
+              <tr>
+                <td>按钮</td>
+                <td>
+                  <label class="btn btn-success">导出</label>
+                  <label class="btn btn-success">打印</label>
+                </td>
+              </tr>
+              <tr>
+                <td>用户名</td>
+                <td><input class="txt" name="txtUserName" type="text" value="" /></td>
+              </tr>
+              <tr>
+                <td>州县</td>
+                <td><select class="ddl" name="ddlCounty">
+                    <option value="">请选择</option>
+                  </select></td>
+              </tr>
+              <tr>
+                <td style="vertical-align:top;">
+                  <p>描述</p>
+                </td>
+                <td><textarea class="txt-mul" name="txtDescript">描述</textarea></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <label id="submit" class="btn btn-info">保存</label>
+                  <label class="btn cancel">取消</label>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <label class="btn show-block btn-info">提交</label>
+                </td>
+              </tr>
+            </table>
+          </form>
+          <script>
+            $("#form1").validate({
+              rules: {
+                txtUserName: { required: true, maxlength: 12 },
+                ddlCounty: { required: true },
+                txtDescript: { maxlength: 50 }
+              },
+              messages: {
+                txtUserName: { required: "请输入用户名！", maxlength: "最多输入12个字！" },
+                ddlCounty: { required: "请选择州县！" },
+                txtDescript: { maxlength: "最多50个字！" }
+              },
+              errorPlacement: function (error, element) {
+                element.parent().css("position", "relative");
+                error.css({ "position": "absolute", "top": "5px", "left": element.get(0).offsetWidth + "px", "display": "block", "width": "200px", "padding-left": "10px", "line-height": "32px", "color": "red" });
+                error.insertAfter(element);
+              }
+            });
+            function submitForm() {
+              $.ajax({
+                url: "",
+                type: "post",
+                dataType: "json",
+                data: {},
+                success: function (d) {
+
+                },
+                error: function (d) {
+
+                }
+              });
+            }
+            $("#submit").click(function () {
+              if ($("#form1").valid()) {
+                submitForm();
+              }
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+    <p>5.列表部分</p>
+    <div class="card">
+      <div class="ui">
+        <div role="page-list">
+          <table class="table-border">
+            <tr class="header">
+              <th>序号</th>
+              <th>屠宰工艺名称</th>
+              <th>屠宰工艺说明</th>
+              <th>其他</th>
+              <th class="txt-center">操作</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ui">
+        <div role="page-list">
+          <table class="table-border">
+            <tr class="header">
+              <th>序号</th>
+              <th>屠宰工艺名称</th>
+              <th>屠宰工艺说明</th>
+              <th>其他</th>
+              <th class="txt-center">操作</th>
+            </tr>
+            <tr>
+              <td>111</td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>111</td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>111</td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>111</td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>111</td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ui">
+        <div role="page-list">
+          <table class="table-border">
+            <tr class="header">
+              <th><label role="checkbtn" class="check-all">序号<input name="se[]" type="checkbox" checked /></label></th>
+              <th>屠宰工艺名称</th>
+              <th>屠宰工艺说明</th>
+              <th>其他</th>
+              <th class="txt-center">操作</th>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">10<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">11<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">12<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">13<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">14<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">15<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">16<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">17<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">18<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">19<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">20<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">21<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label role="checkbtn">22<input name="se[]" type="checkbox" checked /></label>
+              </td>
+              <td>去酸</td>
+              <td>冷冻去酸</td>
+              <td>休息休息</td>
+              <td class="txt-center">
+                <label class="btn link edit">修改</label>
+                <label class="btn link delete">删除</label>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    //单选复选初始化
+    $("[role='radiobtn']").iRadio();
+    $("[role='checkbtn']").iCheck();
+
+    $("#test").click(function () {
+      if (window.parent != window) {
+        console.log("start postMessage!");
+        //console.log(window.parent.frames["test"].location.href);
+        window.parent.postMessage("{a:'test',age:'20'}", "*");
+      }
+    });
+  </script>
+</body>
+
+</html>

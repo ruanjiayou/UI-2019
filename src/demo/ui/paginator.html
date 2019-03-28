@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>分页</title>
+  <link rel="stylesheet" href="../../css/ui.core.css" />
+  <link rel="stylesheet" href="../../css/ui.button.css" />
+  <link rel="stylesheet" href="../../css/ui.table.css" />
+  <link rel="stylesheet" href="../../css/ui.paginator.css" />
+  <link rel="stylesheet" href="../../plugins/lightcode/prism.css" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/core.js"></script>
+  <script src="../../js/core.checkbox.js"></script>
+  <script src="../../js/core.radio.js"></script>
+  <script src="../../js/core.paginator.js"></script>
+  <script src="../../js/core.table.js"></script>
+  <script src="../../js/demo.js"></script>
+  <script src="../../plugins/lightcode/prism.js"></script>
+  <style>
+    #center {
+      padding: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="center">
+    <p id="show">开发阶段</p>
+    <div class="card">
+      <div class="ui">
+        <style>
+          /* 搜索框和按钮部分 */
+          .search_box {
+            position: relative;
+            margin-top: 5px;
+            padding-right: 100px;
+            background-color: #f85f02;
+            overflow: hidden;
+          }
+
+          .search_box input {
+            box-sizing: border-box;
+            width: 100%;
+            border: 2px solid #F85F02;
+            padding: 8px;
+            background-color: #fff;
+            outline: 0 none;
+          }
+
+          .search_box label {
+            position: absolute;
+            right: 0;
+            top: 0;
+            *top: 1px;
+            display: block;
+            width: 100px;
+            height: 36px;
+            line-height: 36px;
+            ;
+            color: #fff;
+            cursor: pointer;
+            font-size: 20px;
+            text-align: center;
+            letter-spacing: 14px;
+            text-indent: 14px;
+            -moz-user-select: none;
+            /*火狐*/
+            -webkit-user-select: none;
+            /*webkit浏览器*/
+            -ms-user-select: none;
+            /*IE10*/
+            -khtml-user-select: none;
+            /*早期浏览器*/
+            user-select: none;
+          }
+        </style>
+        <div class="search_box">
+          <input name="txtSearchStr" id="txtSearchStr" placeholder="请输入商品名称" type="text">
+          <label id="searchBtn">搜索</label>
+        </div>
+        <script>
+          $(function () {
+            //搜索框 实际跳转需要依赖pagination
+            $('#txtSearchStr').keydown(function (e) {
+              if (e.keyCode === 13 && /^\s+$/.test(this.value) === false)
+                alert('search:' + JSON.stringify({ q: this.value, index: 1 }));//pagination1.gotoPage({ q: this.value, index: 1});
+            }).val(decodeURI($.url().query('q')));
+            $('#searchBtn').click(function () {
+              var v = $('#txtSearchStr').val();
+              if (!/^\s+$/.test(v))
+                alert('search:' + JSON.stringify({ q: this.value, index: 1 }));//pagination1.gotoPage({ q: v, index: 1});
+            });
+          });
+        </script>
+      </div>
+    </div>
+    <xmp>
+      pagination包含 排序、分页、查询(借助buildQuery方法 返回param字符串)
+      排序 buildQuery {pagination.config.index = 1;return 'orderBy=column';} gotoPage();
+      查询 buildQuery {pagination.config.index = 1;return 'serach=xxx';} gotoPage();
+      分页和上面都是要 buildQuery 必要的参数的
+      expode两个方法 pagination()和gotoPage()
+      如有必要可以加 query和sort方法
+      <label onclick="pagination.gotoPage();">查询</label>
+      <label onclick="$('.page-query input[type=\'text\']').val('');$('.page-query select').val('');">重置</label>
+      默认属性
+      当前页 index:index
+      总页数 pages:pages
+      每页数 perpage:perpage
+      总数量 items:items
+      排序字段 Order
+      排序方式 desc(默认) asc
+      失效类名 disabled
+      buildQuery:null
+      data-pagination=* 控制的逻辑结构：
+      data-pagination=data :隐藏域数据 input
+      data-pagination=info :分页信息部分 html容器
+      data-pagination=index :当前页码
+      data-pagination=pages :总页码
+      data-pagination=items :总记录
+      data-pagination=first :首页按钮
+      data-pagination=prev :上一页按钮
+      data-pagination=list :链接列表
+      data-pageth = :数字
+      data-pagination=next :下一页按钮
+      data-pagination=last :最后一页按钮
+      data-pagination=perpage :每页数量
+      data-pagination=pageth :要去的页码
+      data-pagination=goto :跳转按钮
+      less相关变量
+      [class="pagination"]
+      & div 分页信息 颜色/位置/padding
+      & ul 页码&操作 位置/margin
+      & li
+      & label, & a 链接&文本
+      位置/边框/背景/颜色/padding/光标/圆角 以及4种状态
+      &:hover &.disabled &.active &.txt
+      & select 选择每页数量
+      & input 输入框
+    </xmp>
+    <div class="card">
+      <div class="ui">
+        <table id="infos" class="table-border">
+          <tr class="header txt-left sort">
+            <th width="150" data-column="time">时间<span class="caret desc"></span></th>
+            <th data-column="info">信息</th>
+            <th width="200" data-column="status">状态</th>
+            <th class="txt-center" width="150">操作</th>
+          </tr>
+          <tr>
+            <td>2017-07-01</td>
+            <td>信息内容7897979797999999999999999</td>
+            <td>状态N</td>
+            <td class="txt-center" data-id="779">
+              <label class="btn link edit">编辑</label>
+              <label class="btn link delete">删除</label>
+            </td>
+          </tr>
+          <tr>
+            <td>2017-07-01</td>
+            <td>信息内容7897979797999999999999999</td>
+            <td>状态N</td>
+            <td class="txt-center" data-id="789">
+              <label class="btn link edit">编辑</label>
+              <label class="btn link delete">删除</label>
+            </td>
+          </tr>
+          <tr>
+            <td>2017-07-01</td>
+            <td>信息内容7897979797999999999999999</td>
+            <td>状态N</td>
+            <td class="txt-center" data-id="799">
+              <label class="btn link edit">编辑</label>
+              <label class="btn link delete">删除</label>
+            </td>
+          </tr>
+          <tr>
+            <td>2017-07-01</td>
+            <td>信息内容7897979797999999999999999</td>
+            <td>状态N</td>
+            <td class="txt-center" data-id="800">
+              <label class="btn link edit">编辑</label>
+              <label class="btn link delete">删除</label>
+            </td>
+          </tr>
+          <tr>
+            <td>2017-07-01</td>
+            <td>信息内容7897979797999999999999999</td>
+            <td>状态N</td>
+            <td class="txt-center" data-id="879">
+              <label class="btn link edit">编辑</label>
+              <label class="btn link delete">删除</label>
+            </td>
+          </tr>
+        </table>
+        <script>
+          $(function () {
+            //字段排序 含初始化和回调
+            $.table.sort({
+              selector: '#infos .header',
+              param: $.url().mQueryString,
+              callback: function (column, method) {
+                //pagination1.gotoPage({ OrderBy: column, OrderMethod: method });
+                console.log(column + ' order ' + method);
+              }
+            });
+          });
+        </script>
+      </div>
+    </div>
+    通过url跳转
+    <div class="card">
+      <div class="ui">
+        <div id="pagination1" class="pagination txt-right">
+          <input data-pagination="data" type="hidden" />
+          <div data-pagination="info">第<span data-pagination="index">1</span>/<span data-pagination="pages">1</span>页
+            共<span data-pagination="items">0</span>条记录</div>
+          <ul>
+            <li><a href="javascript:;" data-pagination="home">首页</a></li>
+            <li><a href="javascript:;" data-pagination="prev">上一页</a></li>
+            <li><a href="javascript:;" data-pagination="next">下一页</a></li>
+            <li><a href="javascript:;" data-pagination="last">尾页</a></li>
+            <li>
+              <select data-pagination="perpage">
+                <option value="10">10条/页</option>
+                <option value="20">20条/页</option>
+              </select>
+            </li>
+            <li>
+              <input type="text" maxlength="4" data-pagination="pageth" />
+              <a href="javascript:;" data-pagination="goto">跳转</a>
+            </li>
+          </ul>
+        </div>
+        <script>
+          $(function () {
+            $('#pagination1').children('[data-pagination="data"]').val(JSON.stringify({ pages: 20, items: 199, index: $.url().query('index') || 1 }));
+            var pagination1 = pagination({
+              selector: '#pagination1',
+              buildQuery: function () {
+                return 'pid=1';
+              }
+            });
+          });
+        </script>
+      </div>
+    </div>
+    通过ajax获取数据
+    <div class="card">
+      <div class="ui">
+        <div id="pagination2" class="pagination txt-center">
+          <input data-pagination="data" type="hidden" />
+          <div data-pagination="info">第<span data-pagination="index">1</span>/<span data-pagination="pages">1</span>页
+            共<span data-pagination="items">0</span>条记录</div>
+          <ul>
+            <li><a href="javascript:;" data-pagination="prev">&lt;</a></li>
+            <li>
+              <ul data-pagination="list"></ul>
+            </li>
+            <li><a href="javascript:;" data-pagination="next">&gt;</a></li>
+            <li>
+              <input type="text" maxlength="4" data-pagination="pageth" />
+              <a onclick="" href="javascript:;" data-pagination="goto">跳转</a>
+            </li>
+          </ul>
+          <ol>
+            <li>20</li>
+            <li>50</li>
+            <li>100</li>
+          </ol>
+        </div>
+        <script>
+          $(function () {
+            var perpage = $.url().query('perpage') || 20;
+            $('#pagination2').children('[data-pagination="data"]').val(JSON.stringify({ pages: 20, items: 199, index: $.url().query('index') || 1 }));
+            var pagination2 = pagination({
+              selector: '#pagination2',
+              buildQuery: function () {
+                return 'pid=1';
+              },
+              go: function () {
+                alert('将要ajax加载 第' + this.index + '页' + ' 每页数量：' + this.perpage);
+              }
+            });
+            $("#pagination2").find('ol li').each(function () {
+              if ($(this).attr('data-perpage') === perpage + '') this.className = 'active';
+              $(this).click(function () {
+                if (!$(this).hasClass('active')) {
+                  $(this).parent().children().removeClass('active');
+                  this.className = "active";
+                  var per = parseInt(this.innerHTML);
+                  pagination2.gotoPage({ perpage: per });
+                }
+              });
+            });
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+  <script></script>
+</body>
+
+</html>

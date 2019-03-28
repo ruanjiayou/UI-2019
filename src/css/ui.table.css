@@ -1,0 +1,112 @@
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：不依赖任何文件,使用参考demo
+      .table        只设置外边框
+      .table-border 田字形边框
+      .table-line   只有水平线边框
+      .table-thead .table-body 固定表头的表格
+      .title        表格第一列的样式
+      .even         交替行的样式
+      2017-3-27 14:41:25 按钮部分依赖button.css 如果不想依赖 取消对应的注释
+      2017-3-27 21:20:24 这里只放table的样式 其他放到 button.css page.css common.css中
+      2017-4-15 17:26:41 设置表格的最小高度 加了框 麻烦又没什么用 可能是以后的败笔
+      2017-7-7 13:52:40  增加sort类 表头今后统一使用title
+*/
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：mixins混合自身不输出样式
+*/
+/*
+作者：xiaomai
+时间：2019-02-18 10:56:22
+说明：less变量文件
+*/
+/*
+  说明 clearfix进化史中的太多麻烦
+  改用bootstrap中的写法
+  .clearfix:before, .clearfix:after { display: block; height: 0; clear: both; content: ""; font-size: 0; visibility: hidden; }
+   IE7不支持:before :after 
+  .clearfix { *zoom: 1; } 
+*/
+/* css3圆角 */
+table.table-line,
+table.table,
+table.table-border,
+table.table-thead,
+.table-body > table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  word-break: break-all;
+}
+th {
+  padding: 0 1rem;
+  line-height: 1.5;
+  text-align: left;
+}
+td {
+  padding: 0.5rem 1rem;
+  height: 2.5rem;
+}
+tr.header > th {
+  border-bottom: 0 none;
+  padding: 0.5rem 1rem;
+  background-color: #f0f0f0;
+}
+tr.even {
+  background-color: #f8f8f8;
+}
+table tr.sort th[data-column] {
+  cursor: pointer;
+}
+table tr.sort .desc,
+table tr.sort .asc {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-right: 0.3333rem solid transparent;
+  border-left: 0.3333rem solid transparent;
+}
+table tr.sort .desc {
+  border-top: 0.3333rem solid;
+}
+table tr.sort .asc {
+  border-bottom: 0.3333rem solid;
+}
+table.table-line tr {
+  border-bottom: 1px solid #ccc;
+}
+table.table-border th {
+  border: 1px solid #ccc;
+}
+table.table-border td {
+  border: 1px solid #ccc;
+}
+/* 冻结的表头 */
+.table-thead {
+  border: 1px solid #ccc;
+  border-bottom: 0 none;
+}
+.table-thead.table-border th {
+  border-left: 1px solid #ccc;
+  border-bottom: 0 none;
+}
+.table-body {
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+}
+.table-body.table-line tr + tr {
+  border-top: 1px solid #ccc;
+}
+.table-body.table-border tr + tr {
+  border-top: 1px solid #ccc;
+}
+.table-body.table-border td + td {
+  border-left: 1px solid #ccc;
+}

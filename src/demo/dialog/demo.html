@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="Keywords" content="HTML,model,test" />
+  <meta name="Description" content="special effect model" />
+  <meta name="time" content="2019-02-18" />
+  <meta name="renderer" content="webkit" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>对话框</title>
+  <link rel="stylesheet" href="../../css/ui.core.css" />
+  <link rel="stylesheet" href="../../css/ui.button.css" />
+  <script src="../../js/jquery.min.js"></script>
+  <script src="../../js/core.js"></script>
+  <script src="../../js/core.dialog.js"></script>
+  <style>
+    #center {
+      padding: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dialog-add-huxing">页面内的添加户型</div>
+  <xmp>
+    1.初始化方法：
+    //例子-iframe对话框
+    var dlgIframe = $.dialog({
+    title: "添加户型",
+    window: top,
+    Closed: function(){
+    console.log("close dialog");
+    },
+    size: {width:500,height:400},
+    });
+    2.打开对话框：
+    dlgIframe.Open();
+    3.关闭对话框
+    dlgIframe.Close();/top.CloseDialog();
+  </xmp>
+  <label id="dlgiframeop" class="btn btn-info" onclick="dlgIframe.Open();">打开iframe</label>
+  <script type="text/javascript">
+
+    //例子-iframe对话框
+    var dlgIframe = $.dialog({
+      title: "添加户型",
+      window: top,
+      Closed: function () {
+        console.log("close iframe");
+      },
+      size: { width: 500, height: 400 },
+    });
+
+  </script>
+</body>
+
+</html>
