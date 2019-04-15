@@ -24,7 +24,6 @@
 */
 /* css3圆角 */
 * {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 html,
@@ -60,6 +59,11 @@ iframe {
 /* 发现没有这个会造成滚动条，与固定底部时的发现一样 */
 iframe {
   display: block;
+}
+xmp {
+  overflow-x: auto;
+  background-color: #00c0ff;
+  border-left: 5px;
 }
 /* 微信中ul有list-style */
 ul,
@@ -111,7 +115,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 input[type="search"] {
   -webkit-appearance: textfield;
-  -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
 input[type="search"]::-webkit-search-cancel-button,
@@ -174,7 +177,6 @@ textarea.txt-mul {
 /* 打断长字符串 */
 .txt-omit {
   overflow: hidden;
-  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -208,11 +210,9 @@ img {
   display: block;
 }
 .img-round {
-  -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
 }
 .img-circle {
-  -webkit-border-radius: 50%;
   border-radius: 50%;
 }
 .show {
@@ -229,13 +229,9 @@ img {
   visibility: hidden;
 }
 .no-radius {
-  -webkit-border-radius: 0 !important;
   border-radius: 0 !important;
 }
 .no-select {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 /* 关闭输入法，适合输入验证码 只有IE和Firefox支持 */
@@ -261,10 +257,6 @@ img {
   clear: both;
 }
 /* TODO: 渐进增强效果：设置页面文字等在拖动鼠标选中情况下的背景色与文字颜色 */
-::-moz-selection {
-  color: #fff;
-  background: none repeat scroll 0% 0% #FD5D3C;
-}
 ::selection {
   color: #fff;
   background: none repeat scroll 0% 0% #FD5D3C;
