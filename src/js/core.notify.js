@@ -9,7 +9,7 @@
 !(function ($) {
   $.notify =
     {
-      template: '<div class="notify"><div class="loading-body"><img class="loading-icon" src="loading.gif"/><div class="loading-text"></div></div></div>',
+      template: '<div class="notify"><div class="loading-body"><div class="loading-icon"></div><div class="loading-text"></div></div></div>',
       defaults: {
         selector: 'body',
         text: '加载中...',

@@ -60,6 +60,7 @@
   display: inline-block;
   *display: inline;
   *zoom: 1;
+  -webkit-border-radius: 0.3rem;
   border-radius: 0.3rem;
   border: 1px solid #0F88EB;
   color: #0F88EB;
@@ -112,6 +113,7 @@
   text-align: center;
   color: #fff;
   background: #eee;
+  -webkit-border-radius: 50%;
   border-radius: 50%;
 }
 .pagination ol li:hover {
@@ -126,7 +128,9 @@
   width: 1.8rem;
   min-width: auto;
   height: 1.25rem;
+  -webkit-box-sizing: content-box;
   box-sizing: content-box;
+  -webkit-border-radius: 0;
   border-radius: 0;
   border: 1px solid #0F88EB;
   padding: 0.3rem;

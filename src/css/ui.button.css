@@ -74,28 +74,38 @@
   margin-left: 0.33rem;
 }
 .btn-group > .btn {
+  -webkit-border-radius: 0;
   border-radius: 0;
 }
 .btn-group > .btn:first-child {
+  -webkit-border-bottom-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
+  -webkit-border-top-left-radius: 0.25rem;
   border-top-left-radius: 0.25rem;
 }
 .btn-group > .btn:last-child {
+  -webkit-border-bottom-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
+  -webkit-border-top-right-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
 .btn-group > .btn.last-child {
+  -webkit-border-bottom-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
+  -webkit-border-top-right-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
 .btn-group > .btn-group {
   float: left;
 }
 .btn-group > .btn-group > .btn {
+  -webkit-border-radius: 0;
   border-radius: 0;
 }
 .btn-group > .btn-group > .last-child {
+  -webkit-border-bottom-right-radius: 0.33rem;
   border-bottom-right-radius: 0.33rem;
+  -webkit-border-top-right-radius: 0.33rem;
   border-top-right-radius: 0.33rem;
 }
 a.btn {
@@ -105,6 +115,7 @@ a.btn {
   display: inline-block;
   *display: inline;
   border: 1px solid #ccc;
+  -webkit-border-radius: 0.25rem;
   border-radius: 0.25rem;
   background-color: #fff;
   cursor: pointer;
@@ -136,6 +147,7 @@ a.btn {
 .btn.block {
   display: block;
   width: 100%;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 .btn.link {
