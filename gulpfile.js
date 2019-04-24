@@ -20,7 +20,6 @@ var gulp = require('gulp'),
   jsSrc = "./src/js/core.*.js",
   htmlSrc = "./src/demo/*/*.html",
   cssDest = "./src/css",
-  cssminDest = './src/css/min/'
 //jsDest =  "./dest/js",
 //htmlDest= "./dest/",
 condition = true;
@@ -54,10 +53,11 @@ gulp.task('css', function () {
       remove: true //去掉不必要的前缀 默认true
     }))
     .pipe(gulp.dest(cssDest))
-    .pipe(concat('all.css'))//concat后没有了.min.css
+    .pipe(concat('all.css'))
+    .pipe(gulp.dest(cssDest))
     .pipe(cssmin())
-    .pipe(gulp.dest(cssminDest))
-    .pipe(concat('all.min.css'))
+    .pipe(rename('all.min.css'))
+    .pipe(gulp.dest(cssDest))
   //.pipe(notify({ message: "less编译完毕！"}))
   //.pipe(notify({ message: "css语法检查完毕！"}));
 });
